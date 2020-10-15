@@ -6,4 +6,7 @@ class JsonTypeAdapter {
   static double doubleFromString(String number) =>
       number == null ? null : double.parse(number);
   static String doubleToString(double number) => number?.toString();
+
+  static String emptyFromNull(field) => field == null ? '' : field;
+  static String emptyToNull(String field) => field.isEmpty ? null : field;
 }
