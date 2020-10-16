@@ -1,8 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:onemapsg/src/models/coordinate_latlong.dart';
-import 'package:onemapsg/src/models/coordinate_xy.dart';
+import 'package:onemapsg/src/models/models.dart';
 
 void main() {
   group('converter deserialization test', () {

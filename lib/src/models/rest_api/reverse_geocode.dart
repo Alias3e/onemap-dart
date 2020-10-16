@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:onemapsg/src/models/geocode_info.dart';
+import 'package:onemapsg/src/models/models.dart';
 
 part 'reverse_geocode.g.dart';
 

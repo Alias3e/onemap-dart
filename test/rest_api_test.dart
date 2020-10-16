@@ -1,8 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:onemapsg/src/models/reverse_geocode.dart';
-import 'package:onemapsg/src/models/search.dart';
+import 'package:onemapsg/src/models/models.dart';
 
 void main() {
   group('OneMap REST API deserialization tests', () {
