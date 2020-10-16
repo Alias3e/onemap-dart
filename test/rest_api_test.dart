@@ -1,22 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:onemapsg/src/models/onemap_credentials.dart';
 import 'package:onemapsg/src/models/reverse_geocode.dart';
 import 'package:onemapsg/src/models/search.dart';
 
 void main() {
-  group('deserialization model tests', () {
-    test('authenticate response deserialize correctly', () {
-      Map<String, dynamic> response = json
-          .decode(r'{"access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.-w",'
-              r'"expiry_timestamp":"1460794801"}');
-      OneMapCredentials credentials = OneMapCredentials.fromJson(response);
-      expect(
-          credentials.accessToken, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.-w');
-      expect(credentials.expiryTimestamp, 1460794801);
-    });
-
+  group('OneMap REST API deserialization tests', () {
     test('search response deserialize correctly', () {
       //this json to map conversion was done by dio library
       Map<String, dynamic> response = json.decode(r'{"found":5,'

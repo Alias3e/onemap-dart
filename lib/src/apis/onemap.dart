@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:onemapsg/onemapsg.dart';
-import 'package:onemapsg/src/apis/rest_api.dart';
 
 /// Entry point for OneMap SDK.
 class OneMap {
@@ -17,6 +16,7 @@ class OneMap {
 
   Authentication _authentication;
   RestApi _restApi;
+  CoordinateConverter _coordinateConverter;
 
   /// Private constructor to initial this instance;
   OneMap._privateConstructor() {
@@ -30,13 +30,21 @@ class OneMap {
   /// Get the instance of an OneMap object.
   static final OneMap instance = OneMap._privateConstructor();
 
+  /// OneMap [Authentication] APIs.
   Authentication get authentication {
     _authentication ??= Authentication(_dio);
     return _authentication;
   }
 
+  /// OneMap REST APIs such as search and reverse geocoding.
   RestApi get restApi {
     _restApi ??= RestApi(_dio);
     return _restApi;
+  }
+
+  /// Convert coordinates between various spatial references.
+  CoordinateConverter get coordinateConverter {
+    _coordinateConverter ??= CoordinateConverter(_dio);
+    return _coordinateConverter;
   }
 }
