@@ -1,7 +1,8 @@
 import 'package:onemapsg/onemapsg.dart';
+import 'package:onemapsg/src/models/onemap_theme/onemap_theme.dart';
 
 String token =
-    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjUyNzgsInVzZXJfaWQiOjUyNzgsImVtYWlsIjoiYm9yaW5nLmFwcHMuc2dAZ21haWwuY29tIiwiZm9yZXZlciI6ZmFsc2UsImlzcyI6Imh0dHA6XC9cL29tMi5kZmUub25lbWFwLnNnXC9hcGlcL3YyXC91c2VyXC9zZXNzaW9uIiwiaWF0IjoxNjAyNjAzOTE2LCJleHAiOjE2MDMwMzU5MTYsIm5iZiI6MTYwMjYwMzkxNiwianRpIjoiZWZkYzAwYmRiZWExNjUwMjEwMjAyMTE5ZTljNjAyNDQifQ.238alT_p5SqFvsAhmitjhFuhonM5nbMkWGzSFb86ABA';
+    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjUyNzgsInVzZXJfaWQiOjUyNzgsImVtYWlsIjoiYm9yaW5nLmFwcHMuc2dAZ21haWwuY29tIiwiZm9yZXZlciI6ZmFsc2UsImlzcyI6Imh0dHA6XC9cL29tMi5kZmUub25lbWFwLnNnXC9hcGlcL3YyXC91c2VyXC9zZXNzaW9uIiwiaWF0IjoxNjAzMDM4NTg5LCJleHAiOjE2MDM0NzA1ODksIm5iZiI6MTYwMzAzODU4OSwianRpIjoiYjM1ZTNhYmQwYjQzYWFmNjM5ODQ1YzE2NWZhMWQ2NmMifQ.KU5pBDdC95eitl_H7ZNiWxlKW7x7K5JCkvZ5lFJbBxI';
 
 Future<void> main() async {
   // Authenticate and retrieve token
@@ -16,6 +17,7 @@ Future<void> main() async {
 
   restApiExample();
   coordinateConverterExample();
+  themeExample();
 }
 
 void restApiExample() async {
@@ -76,6 +78,59 @@ void coordinateConverterExample() async {
     CoordinateLatLong coordinates = await OneMap.instance.coordinateConverter
         .from3857To4326(x: 11559656.16256661, y: 146924.54200324757);
     print(coordinates);
+  } catch (e) {
+    print(e);
+  }
+}
+
+void themeExample() async {
+  try {
+    Status status = await OneMap.instance.themes.checkThemeStatus(
+        token: token, queryName: 'dengue_cluster', dateTime: DateTime.now());
+    print(status.updatedFile);
+  } catch (e) {
+    print(e);
+  }
+
+  try {
+    ThemeInfo info = await OneMap.instance.themes
+        .getThemeInfo(token: token, queryName: 'kindergartens');
+    print(info.themeNames[0].themeName);
+    print(info.themeNames[0].queryName);
+  } catch (e) {
+    print(e);
+  }
+
+  try {
+    ThemeInfo allInfo = await OneMap.instance.themes
+        .getAllThemesInfo(token: token, moreInfo: true);
+    print(allInfo.themeNames[0].themeName);
+    print(allInfo.themeNames[0].queryName);
+    print(allInfo.themeNames[0].category);
+    print(allInfo.themeNames[0].icon);
+    print(allInfo.themeNames[0].themeOwner);
+  } catch (e) {
+    print(e);
+  }
+
+  try {
+    Themes themes = await OneMap.instance.themes.retrieveThemes(
+      token: token,
+      queryName: 'kindergartens',
+      bottom: 1.291789,
+      top: 1.3290461,
+      left: 103.7796402,
+      right: 103.8726032,
+    );
+    ThemeResultsOverview overview = themes.results[0];
+    print(overview.featureCount);
+    print(overview.themeName);
+
+    print((themes.results[1] as ThemeResultsItem).name);
+    print((themes.results[1] as ThemeResultsItem).description);
+    print((themes.results[1] as ThemeResultsItem).address);
+    print((themes.results[1] as ThemeResultsItem).postalCode);
+    print((themes.results[1] as ThemeResultsItem).latLng);
   } catch (e) {
     print(e);
   }

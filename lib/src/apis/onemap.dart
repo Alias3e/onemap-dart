@@ -17,6 +17,7 @@ class OneMap {
   Authentication _authentication;
   RestApi _restApi;
   CoordinateConverter _coordinateConverter;
+  ThemesApi _themes;
 
   /// Private constructor to initial this instance;
   OneMap._privateConstructor() {
@@ -46,5 +47,11 @@ class OneMap {
   CoordinateConverter get coordinateConverter {
     _coordinateConverter ??= CoordinateConverter(_dio);
     return _coordinateConverter;
+  }
+
+  // Thematic information(dengue cluster, kindergartens etc) from various agencies.
+  ThemesApi get themes {
+    _themes ??= ThemesApi(_dio);
+    return _themes;
   }
 }

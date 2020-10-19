@@ -8,8 +8,8 @@ part of 'coordinate_xy.dart';
 
 CoordinateXY _$CoordinateXYFromJson(Map<String, dynamic> json) {
   return CoordinateXY(
-    json['X'],
-    json['Y'],
+    (json['X'] as num)?.toDouble(),
+    (json['Y'] as num)?.toDouble(),
   );
 }
 

@@ -15,8 +15,8 @@ class CoordinateLatLong {
   CoordinateLatLong(this.latitude, this.longitude);
 
   factory CoordinateLatLong.fromJson(Map<String, dynamic> json) =>
-      _$CoordinateLatLonFromJson(json);
-  Map<String, dynamic> toJson() => _$CoordinateLatLonToJson(this);
+      _$CoordinateLatLongFromJson(json);
+  Map<String, dynamic> toJson() => _$CoordinateLatLongToJson(this);
 
   LatLng toLatLng() => LatLng(latitude, longitude);
 
