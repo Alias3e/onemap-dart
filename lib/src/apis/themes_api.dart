@@ -37,7 +37,7 @@ class ThemesApi {
   }
 
   /// Search themes via the [queryName] and returns the themes’ info. Requires
-  /// [token] that can be retrieved using [Authentication.getToken].
+  /// [token] retrieved using [Authentication.getToken].
   /// https://docs.onemap.sg/#get-theme-info
   Future<ThemeInfo> getThemeInfo({
     String token,

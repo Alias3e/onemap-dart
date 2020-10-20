@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
+import 'package:onemapsg/onemapsg.dart';
 import 'package:onemapsg/src/models/models.dart';
 
 /// Contains OneMap rest APIs [search], [reverseGeocodeXY] and [reverseGeocode].
@@ -37,7 +38,7 @@ class RestApi {
   /// https://docs.onemap.sg/#reverse-geocode-svy21
   ///
   /// * [x],[y] are map coordinates in SVY21 format.
-  /// * [token] is retrieved from [getToken]
+  /// * [token] is retrieved using [Authentication.getToken]
   /// * Rounds up all buildings in a circumference from a point like a compass; and searches building addresses within the [buffer] range. Defaults to 10m with a maximum of 500m
   /// * [addressType] Provide user the selection of All or HDB properties within the buffer/radius. If HDB is chosen, this will filter to show all HDB-related building. Defaults to All.
   /// * [otherFeatures] enables users to retrieve information on reservoirs, playgrounds, jetties and many more. Defaults to false.
@@ -65,7 +66,7 @@ class RestApi {
   /// https://docs.onemap.sg/#reverse-geocode-wgs84
   ///
   /// * [latitude],[longitude] are map coordinates in WGS84 format.
-  /// * [token] is retrieved from [getToken]
+  /// * [token] is retrieved using [Authentication.getToken]
   /// * Rounds up all buildings in a circumference from a point like a compass; and searches building addresses within the [buffer] range. Defaults to 10m with a maximum of 500m
   /// * [addressType] Provide user the selection of All or HDB properties within the buffer/radius. If HDB is chosen, this will filter to show all HDB-related building. Defaults to All.
   /// * [otherFeatures] enables users to retrieve information on reservoirs, playgrounds, jetties and many more. Defaults to false.

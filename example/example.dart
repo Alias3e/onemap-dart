@@ -15,9 +15,10 @@ Future<void> main() async {
     print(e);
   }
 
-  restApiExample();
-  coordinateConverterExample();
-  themeExample();
+//  restApiExample();
+//  coordinateConverterExample();
+//  themeExample();
+  planningAreaExample();
 }
 
 void restApiExample() async {
@@ -131,6 +132,40 @@ void themeExample() async {
     print((themes.results[1] as ThemeResultsItem).address);
     print((themes.results[1] as ThemeResultsItem).postalCode);
     print((themes.results[1] as ThemeResultsItem).latLng);
+  } catch (e) {
+    print(e);
+  }
+}
+
+void planningAreaExample() async {
+  try {
+    List<PlanningArea> planningArea =
+        await OneMap.instance.planningArea.getPlanningAreasName(token: token);
+    print(planningArea.length);
+  } catch (e) {
+    print(e);
+  }
+
+  try {
+    List<PlanningArea> planningArea =
+        await OneMap.instance.planningArea.getAllPlanningAreas(token: token);
+    print(planningArea[28].planningAreaName);
+    print(planningArea[28].geoJson['type']);
+  } catch (e) {
+    print(e);
+  }
+
+  try {
+    List<PlanningArea> planningArea =
+        await OneMap.instance.planningArea.getPlanningArea(
+      token: token,
+      longitude: 103.8,
+      latitude: 1.3,
+    );
+    print(planningArea[0].planningAreaName);
+    print(planningArea[0].geoJson['type']);
+//    print(planningArea[0].geoJson['coordinates'][0]);
+//    print(planningArea[0].geoJsonString);
   } catch (e) {
     print(e);
   }

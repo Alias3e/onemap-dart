@@ -18,6 +18,7 @@ class OneMap {
   RestApi _restApi;
   CoordinateConverter _coordinateConverter;
   ThemesApi _themes;
+  PlanningAreaApi _planningArea;
 
   /// Private constructor to initial this instance;
   OneMap._privateConstructor() {
@@ -49,9 +50,15 @@ class OneMap {
     return _coordinateConverter;
   }
 
-  // Thematic information(dengue cluster, kindergartens etc) from various agencies.
+  // Provides thematic information(dengue cluster, kindergartens etc) from various agencies.
   ThemesApi get themes {
     _themes ??= ThemesApi(_dio);
     return _themes;
+  }
+
+  // APIs to retrieve data related to the planning area of Singapore.
+  PlanningAreaApi get planningArea {
+    _planningArea ??= PlanningAreaApi(_dio);
+    return _planningArea;
   }
 }
