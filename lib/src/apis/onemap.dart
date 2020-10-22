@@ -19,6 +19,7 @@ class OneMap {
   CoordinateConverter _coordinateConverter;
   ThemesApi _themes;
   PlanningAreaApi _planningArea;
+  PopulationQuery _populationQuery;
 
   /// Private constructor to initial this instance;
   OneMap._privateConstructor() {
@@ -60,5 +61,11 @@ class OneMap {
   PlanningAreaApi get planningArea {
     _planningArea ??= PlanningAreaApi(_dio);
     return _planningArea;
+  }
+
+  /// Set of APIs to retrieve population datasets provided by the Department Of Statistics for analytical needs.
+  PopulationQuery get populationQuery {
+    _populationQuery ??= PopulationQuery(_dio);
+    return _populationQuery;
   }
 }
