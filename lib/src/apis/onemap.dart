@@ -20,6 +20,7 @@ class OneMap {
   ThemesApi _themes;
   PlanningAreaApi _planningArea;
   PopulationQuery _populationQuery;
+  Routing _routing;
 
   /// Private constructor to initial this instance;
   OneMap._privateConstructor() {
@@ -67,5 +68,12 @@ class OneMap {
   PopulationQuery get populationQuery {
     _populationQuery ??= PopulationQuery(_dio);
     return _populationQuery;
+  }
+
+  /// Retrieve routes given starting point to destination using various modes of
+  /// transportation.
+  Routing get routing {
+    _routing ??= Routing(_dio);
+    return _routing;
   }
 }

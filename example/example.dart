@@ -1,8 +1,9 @@
+import 'package:dio/dio.dart';
+import 'package:latlong/latlong.dart';
 import 'package:onemapsg/onemapsg.dart';
-import 'package:onemapsg/src/models/onemap_theme/onemap_theme.dart';
 
 String token =
-    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjUyNzgsInVzZXJfaWQiOjUyNzgsImVtYWlsIjoiYm9yaW5nLmFwcHMuc2dAZ21haWwuY29tIiwiZm9yZXZlciI6ZmFsc2UsImlzcyI6Imh0dHA6XC9cL29tMi5kZmUub25lbWFwLnNnXC9hcGlcL3YyXC91c2VyXC9zZXNzaW9uIiwiaWF0IjoxNjAzMDM4NTg5LCJleHAiOjE2MDM0NzA1ODksIm5iZiI6MTYwMzAzODU4OSwianRpIjoiYjM1ZTNhYmQwYjQzYWFmNjM5ODQ1YzE2NWZhMWQ2NmMifQ.KU5pBDdC95eitl_H7ZNiWxlKW7x7K5JCkvZ5lFJbBxI';
+    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjUyNzgsInVzZXJfaWQiOjUyNzgsImVtYWlsIjoiYm9yaW5nLmFwcHMuc2dAZ21haWwuY29tIiwiZm9yZXZlciI6ZmFsc2UsImlzcyI6Imh0dHA6XC9cL29tMi5kZmUub25lbWFwLnNnXC9hcGlcL3YyXC91c2VyXC9zZXNzaW9uIiwiaWF0IjoxNjA0Mjk2MjY3LCJleHAiOjE2MDQ3MjgyNjcsIm5iZiI6MTYwNDI5NjI2NywianRpIjoiNjM2NjcwY2Y3ODM3Nzc5NjQxODcyNDQ1ZjE1N2E3YWYifQ.lGP-rSI9uRFt_ZZA0fsQThp8GjPUIoswrF2OaHleje8';
 
 Future<void> main() async {
   // Authenticate and retrieve token
@@ -15,10 +16,11 @@ Future<void> main() async {
     print(e);
   }
 
-//  restApiExample();
-//  coordinateConverterExample();
-//  themeExample();
+  restApiExample();
+  coordinateConverterExample();
+  themeExample();
   planningAreaExample();
+  routingExample();
 }
 
 void restApiExample() async {
@@ -168,5 +170,67 @@ void planningAreaExample() async {
 //    print(planningArea[0].geoJsonString);
   } catch (e) {
     print(e);
+  }
+}
+
+void routingExample() async {
+  try {
+    Route route = await OneMap.instance.routing.getRoute(
+        start: LatLng(1.319728, 103.8421),
+        end: LatLng(1.319728905, 103.8421581),
+        routeType: RouteType.walk,
+        token: token);
+
+    print(route.subtitle);
+    print(route.routeNames);
+    print(route.routeGeometry);
+  } catch (e) {
+    print(e);
+  }
+
+  try {
+    Route route = await OneMap.instance.routing.getRoute(
+        start: LatLng(1.319728, 103.8421),
+        end: LatLng(1.315728905, 103.8121581),
+        routeType: RouteType.drive,
+        token: token);
+
+    print(route.subtitle);
+    print(route.routeNames);
+    print(route.routeGeometry);
+  } catch (e) {
+    print(e);
+  }
+
+  try {
+    Route route = await OneMap.instance.routing.getRoute(
+        start: LatLng(1.319728, 103.8421),
+        end: LatLng(1.315728905, 103.8121581),
+        routeType: RouteType.cycle,
+        token: token);
+
+    print(route.subtitle);
+    print(route.routeNames);
+    print(route.routeGeometry);
+  } catch (e) {
+    print(e);
+  }
+
+  try {
+    PublicTransportRoute ptRoute = await OneMap.instance.routing
+        .getPublicTransportRoute(
+            start: LatLng(1.320981, 103.844150),
+            end: LatLng(1.326762, 103.8559),
+            token: token,
+            dateTime: DateTime.now(),
+            mode: Mode.TRANSIT);
+
+    print(ptRoute.plan.itineraries.length);
+    print(ptRoute.plan.itineraries[0].duration);
+    print(ptRoute.plan.itineraries[0].legs[0].legGeometry);
+  } on DioError catch (e) {
+    print(e);
+    print(e.request.queryParameters);
+    print(e.request.uri);
   }
 }

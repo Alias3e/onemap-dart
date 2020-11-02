@@ -4,4 +4,5 @@ export 'onemap.dart';
 export 'planning_area_api.dart';
 export 'population_query.dart';
 export 'rest_api.dart';
+export 'routing.dart';
 export 'themes_api.dart';

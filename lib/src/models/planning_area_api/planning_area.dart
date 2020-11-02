@@ -20,7 +20,7 @@ class PlanningArea {
   Map<String, dynamic> get geoJson {
     try {
       return json.decode(geoJsonString);
-    } on FormatException catch (e) {
+    } on FormatException catch (_) {
       // We need to handle format exception for the JSON string because
       // getAllPlanningAreas and getPlanningArea API returns JSON in different
       // format. getPlanningArea API does not escape the GeoJSON string, so we
@@ -29,7 +29,7 @@ class PlanningArea {
           .replaceFirst('type', '\"type\"')
           .replaceFirst('coordinates', '\"coordinates\"')
           .replaceFirst('MultiPolygon', '\"MultiPolygon\"'));
-    } on Error catch (e) {
+    } on Error catch (_) {
       return {};
     }
   }

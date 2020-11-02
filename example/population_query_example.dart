@@ -25,8 +25,8 @@ main() async {
     // First entry in list is for Male data & second entry is for Female data if
     // the gender is not specified. Otherwise, list contains only a single entry.
     for (EconomicStatus ec in status) {
-      print(status[0].gender);
-      print(status[0].employed);
+      print(ec.gender);
+      print(ec.employed);
     }
   } catch (e) {
     print(e);
