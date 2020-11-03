@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:latlong/latlong.dart';
-import 'package:onemapsg/onemapsg.dart';
+import 'package:onemapsg/src/models/models.dart';
 
 main() {
   group('routing tests', () {

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
-import 'package:onemapsg/onemapsg.dart';
+import 'package:onemapsg/src/onemapsg.dart';
 
 class PopulationQuery {
   final Dio _dio;

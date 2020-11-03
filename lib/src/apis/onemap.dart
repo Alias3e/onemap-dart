@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:onemapsg/onemapsg.dart';
+import 'package:onemapsg/src/onemapsg.dart';
 
 /// Entry point for OneMap SDK.
 class OneMap {

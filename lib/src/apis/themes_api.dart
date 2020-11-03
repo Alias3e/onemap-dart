@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:intl/intl.dart';
 import 'package:meta/meta.dart';
-import 'package:onemapsg/onemapsg.dart';
+import 'package:onemapsg/src/onemapsg.dart';
 
 /// SDK to retrieve a compilation of thematic information from various agencies.
 class ThemesApi {

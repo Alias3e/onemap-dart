@@ -1,4 +1,4 @@
-import 'package:onemapsg/onemapsg.dart';
+import 'package:onemapsg/src/onemapsg.dart';
 
 main() async {
   String token =

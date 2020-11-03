@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
-import 'package:onemapsg/onemapsg.dart';
-import 'package:onemapsg/src/models/models.dart';
+import 'package:onemapsg/src/onemapsg.dart';
 
 /// Contains OneMap rest APIs [search], [reverseGeocodeXY] and [reverseGeocode].
 class RestApi {

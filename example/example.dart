@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:latlong/latlong.dart';
-import 'package:onemapsg/onemapsg.dart';
+import 'package:onemapsg/src/onemapsg.dart';
 
 String token =
     'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjUyNzgsInVzZXJfaWQiOjUyNzgsImVtYWlsIjoiYm9yaW5nLmFwcHMuc2dAZ21haWwuY29tIiwiZm9yZXZlciI6ZmFsc2UsImlzcyI6Imh0dHA6XC9cL29tMi5kZmUub25lbWFwLnNnXC9hcGlcL3YyXC91c2VyXC9zZXNzaW9uIiwiaWF0IjoxNjA0Mjk2MjY3LCJleHAiOjE2MDQ3MjgyNjcsIm5iZiI6MTYwNDI5NjI2NywianRpIjoiNjM2NjcwY2Y3ODM3Nzc5NjQxODcyNDQ1ZjE1N2E3YWYifQ.lGP-rSI9uRFt_ZZA0fsQThp8GjPUIoswrF2OaHleje8';
