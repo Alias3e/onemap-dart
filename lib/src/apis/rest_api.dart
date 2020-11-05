@@ -1,12 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
+import 'package:onemapsg/src/missing_token_exception.dart';
 import 'package:onemapsg/src/onemapsg.dart';
 
 /// Contains OneMap rest APIs [search], [reverseGeocodeXY] and [reverseGeocode].
-class RestApi {
-  final Dio _dio;
-
-  RestApi(this._dio);
+class RestApi extends Api {
+  RestApi(Dio dio, Authentication authentication) : super(dio, authentication);
 
   /// Search address data for a given search value. (https://docs.onemap.sg/#search)
   ///
@@ -20,7 +19,7 @@ class RestApi {
     @required bool getAddrDetails,
     int pageNumber,
   }) async {
-    var result = await _dio.get(
+    var result = await dio.get(
       '/commonapi/search',
       queryParameters: {
         'searchVal': searchVal,
@@ -37,22 +36,21 @@ class RestApi {
   /// https://docs.onemap.sg/#reverse-geocode-svy21
   ///
   /// * [x],[y] are map coordinates in SVY21 format.
-  /// * [token] is retrieved using [Authentication.getToken]
   /// * Rounds up all buildings in a circumference from a point like a compass; and searches building addresses within the [buffer] range. Defaults to 10m with a maximum of 500m
   /// * [addressType] Provide user the selection of All or HDB properties within the buffer/radius. If HDB is chosen, this will filter to show all HDB-related building. Defaults to All.
   /// * [otherFeatures] enables users to retrieve information on reservoirs, playgrounds, jetties and many more. Defaults to false.
   Future<ReverseGeocode> reverseGeocodeXY({
     @required double x,
     @required double y,
-    @required String token,
     int buffer = 10,
     AddressType addressType = AddressType.All,
     bool otherFeatures = false,
   }) async {
+    if (authentication.accessToken.isEmpty) throw MissingTokenException();
     var response =
-        await _dio.get('/privateapi/commonsvc/revgeocodexy', queryParameters: {
+        await dio.get('/privateapi/commonsvc/revgeocodexy', queryParameters: {
       'location': '$x,$y',
-      'token': token,
+      'token': authentication.accessToken,
       'buffer': buffer,
       'addressType': addressType.toString(),
       'otherFeatures': 'Y',
@@ -65,22 +63,21 @@ class RestApi {
   /// https://docs.onemap.sg/#reverse-geocode-wgs84
   ///
   /// * [latitude],[longitude] are map coordinates in WGS84 format.
-  /// * [token] is retrieved using [Authentication.getToken]
   /// * Rounds up all buildings in a circumference from a point like a compass; and searches building addresses within the [buffer] range. Defaults to 10m with a maximum of 500m
   /// * [addressType] Provide user the selection of All or HDB properties within the buffer/radius. If HDB is chosen, this will filter to show all HDB-related building. Defaults to All.
   /// * [otherFeatures] enables users to retrieve information on reservoirs, playgrounds, jetties and many more. Defaults to false.
   Future<ReverseGeocode> reverseGeocode({
     @required double latitude,
     @required double longitude,
-    @required String token,
     int buffer = 10,
     AddressType addressType = AddressType.All,
     bool otherFeatures = false,
   }) async {
+    if (authentication.accessToken.isEmpty) throw MissingTokenException();
     var response =
-        await _dio.get('/privateapi/commonsvc/revgeocode', queryParameters: {
+        await dio.get('/privateapi/commonsvc/revgeocode', queryParameters: {
       'location': '$latitude,$longitude',
-      'token': token,
+      'token': authentication.accessToken,
       'buffer': buffer,
       'addressType': addressType.toString(),
       'otherFeatures': 'Y',

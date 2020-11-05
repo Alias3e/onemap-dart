@@ -1,17 +1,21 @@
 import 'package:dio/dio.dart';
 import 'package:latlong/latlong.dart';
+import 'package:onemapsg/src/missing_token_exception.dart';
 import 'package:onemapsg/src/onemapsg.dart';
 
 String token =
-    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjUyNzgsInVzZXJfaWQiOjUyNzgsImVtYWlsIjoiYm9yaW5nLmFwcHMuc2dAZ21haWwuY29tIiwiZm9yZXZlciI6ZmFsc2UsImlzcyI6Imh0dHA6XC9cL29tMi5kZmUub25lbWFwLnNnXC9hcGlcL3YyXC91c2VyXC9zZXNzaW9uIiwiaWF0IjoxNjA0Mjk2MjY3LCJleHAiOjE2MDQ3MjgyNjcsIm5iZiI6MTYwNDI5NjI2NywianRpIjoiNjM2NjcwY2Y3ODM3Nzc5NjQxODcyNDQ1ZjE1N2E3YWYifQ.lGP-rSI9uRFt_ZZA0fsQThp8GjPUIoswrF2OaHleje8';
+    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjUyNzgsInVzZXJfaWQiOjUyNzgsImVtYWlsIjoiYm9yaW5nLmFwcHMuc2dAZ21haWwuY29tIiwiZm9yZXZlciI6ZmFsc2UsImlzcyI6Imh0dHA6XC9cL29tMi5kZmUub25lbWFwLnNnXC9hcGlcL3YyXC91c2VyXC9zZXNzaW9uIiwiaWF0IjoxNjA0NTU5NjEwLCJleHAiOjE2MDQ5OTE2MTAsIm5iZiI6MTYwNDU1OTYxMCwianRpIjoiY2Y5MzZhYWE5YjExYThjMTQ2ODI1MTJlYTU3ZDkwZDcifQ.USyyrjxY-ypmPo06yfIG037Jpe5O2FUbSHbnyVvwCZc';
+OneMap oneMap;
 
 Future<void> main() async {
+  oneMap = OneMap(accessToken: token);
   // Authenticate and retrieve token
   try {
     OneMapCredentials credentials =
-        await OneMap.instance.authentication.getToken(email: '', password: '');
-    if (credentials.accessToken.isNotEmpty) token = credentials.accessToken;
+        await oneMap.authentication.getToken(email: '', password: '');
+    // Cache accessToken if needed here, expiry timestamp is included.
     print(credentials.accessToken);
+    print(credentials.expiry);
   } catch (e) {
     print(e);
   }
@@ -26,18 +30,17 @@ Future<void> main() async {
 void restApiExample() async {
   // Search for locations container "yishun"
   try {
-    Search result = await OneMap.instance.restApi
+    Search result = await oneMap.restApi
         .search(searchVal: 'yishun', returnGeom: true, getAddrDetails: true);
-    print(result);
+    print(result.results.length);
   } catch (e) {
     print(e);
   }
 
   try {
-    ReverseGeocode geocode = await OneMap.instance.restApi.reverseGeocodeXY(
+    ReverseGeocode geocode = await oneMap.restApi.reverseGeocodeXY(
         x: 33159.1597983748,
         y: 31783.4077108439,
-        token: token,
         buffer: 10,
         addressType: AddressType.All,
         otherFeatures: true);
@@ -46,15 +49,17 @@ void restApiExample() async {
       print(geocodeInfo.road);
       print('end reverse geocodeXY');
     }
-  } catch (e) {
+  } on DioError catch (e) {
+    print(e);
+  } on MissingTokenException catch (e) {
+    // Perform authentication here
     print(e);
   }
 
   try {
-    ReverseGeocode geocode = await OneMap.instance.restApi.reverseGeocode(
+    ReverseGeocode geocode = await oneMap.restApi.reverseGeocode(
         latitude: 1.3,
         longitude: 103.8,
-        token: token,
         buffer: 10,
         addressType: AddressType.All,
         otherFeatures: true);
@@ -63,14 +68,17 @@ void restApiExample() async {
       print(geocodeInfo.road);
       print('end reverse geocode');
     }
-  } catch (e) {
+  } on DioError catch (e) {
+    print(e);
+  } on MissingTokenException catch (e) {
+    // Perform authentication here
     print(e);
   }
 }
 
 void coordinateConverterExample() async {
   try {
-    CoordinateXY coordinates = await OneMap.instance.coordinateConverter
+    CoordinateXY coordinates = await oneMap.coordinateConverter
         .from4326To3414(latitude: 1.319728905, longitude: 103.8421581);
     print(coordinates);
   } catch (e) {
@@ -78,7 +86,7 @@ void coordinateConverterExample() async {
   }
 
   try {
-    CoordinateLatLong coordinates = await OneMap.instance.coordinateConverter
+    CoordinateLatLong coordinates = await oneMap.coordinateConverter
         .from3857To4326(x: 11559656.16256661, y: 146924.54200324757);
     print(coordinates);
   } catch (e) {
@@ -88,16 +96,16 @@ void coordinateConverterExample() async {
 
 void themeExample() async {
   try {
-    Status status = await OneMap.instance.themes.checkThemeStatus(
-        token: token, queryName: 'dengue_cluster', dateTime: DateTime.now());
+    Status status = await oneMap.themes.checkThemeStatus(
+        queryName: 'dengue_cluster', dateTime: DateTime.now());
     print(status.updatedFile);
   } catch (e) {
     print(e);
   }
 
   try {
-    ThemeInfo info = await OneMap.instance.themes
-        .getThemeInfo(token: token, queryName: 'kindergartens');
+    ThemeInfo info =
+        await oneMap.themes.getThemeInfo(queryName: 'kindergartens');
     print(info.themeNames[0].themeName);
     print(info.themeNames[0].queryName);
   } catch (e) {
@@ -105,8 +113,7 @@ void themeExample() async {
   }
 
   try {
-    ThemeInfo allInfo = await OneMap.instance.themes
-        .getAllThemesInfo(token: token, moreInfo: true);
+    ThemeInfo allInfo = await oneMap.themes.getAllThemesInfo(moreInfo: true);
     print(allInfo.themeNames[0].themeName);
     print(allInfo.themeNames[0].queryName);
     print(allInfo.themeNames[0].category);
@@ -117,8 +124,7 @@ void themeExample() async {
   }
 
   try {
-    Themes themes = await OneMap.instance.themes.retrieveThemes(
-      token: token,
+    Themes themes = await oneMap.themes.retrieveThemes(
       queryName: 'kindergartens',
       bottom: 1.291789,
       top: 1.3290461,
@@ -142,7 +148,7 @@ void themeExample() async {
 void planningAreaExample() async {
   try {
     List<PlanningArea> planningArea =
-        await OneMap.instance.planningArea.getPlanningAreasName(token: token);
+        await oneMap.planningArea.getPlanningAreasName();
     print(planningArea.length);
   } catch (e) {
     print(e);
@@ -150,7 +156,7 @@ void planningAreaExample() async {
 
   try {
     List<PlanningArea> planningArea =
-        await OneMap.instance.planningArea.getAllPlanningAreas(token: token);
+        await oneMap.planningArea.getAllPlanningAreas();
     print(planningArea[28].planningAreaName);
     print(planningArea[28].geoJson['type']);
   } catch (e) {
@@ -158,9 +164,7 @@ void planningAreaExample() async {
   }
 
   try {
-    List<PlanningArea> planningArea =
-        await OneMap.instance.planningArea.getPlanningArea(
-      token: token,
+    List<PlanningArea> planningArea = await oneMap.planningArea.getPlanningArea(
       longitude: 103.8,
       latitude: 1.3,
     );
@@ -175,55 +179,62 @@ void planningAreaExample() async {
 
 void routingExample() async {
   try {
-    Route route = await OneMap.instance.routing.getRoute(
-        start: LatLng(1.319728, 103.8421),
-        end: LatLng(1.319728905, 103.8421581),
-        routeType: RouteType.walk,
-        token: token);
+    Route route = await oneMap.routing.getRoute(
+      start: LatLng(1.319728, 103.8421),
+      end: LatLng(1.319728905, 103.8421581),
+      routeType: RouteType.walk,
+    );
 
     print(route.subtitle);
     print(route.routeNames);
     print(route.routeGeometry);
+  } on MissingTokenException catch (e) {
+    // perform authentication here
+    print(e);
   } catch (e) {
     print(e);
   }
 
   try {
-    Route route = await OneMap.instance.routing.getRoute(
-        start: LatLng(1.319728, 103.8421),
-        end: LatLng(1.315728905, 103.8121581),
-        routeType: RouteType.drive,
-        token: token);
+    Route route = await oneMap.routing.getRoute(
+      start: LatLng(1.319728, 103.8421),
+      end: LatLng(1.315728905, 103.8121581),
+      routeType: RouteType.drive,
+    );
 
     print(route.subtitle);
     print(route.routeNames);
     print(route.routeGeometry);
+  } on MissingTokenException catch (e) {
+    // perform authentication here
+    print(e);
   } catch (e) {
     print(e);
   }
 
   try {
-    Route route = await OneMap.instance.routing.getRoute(
-        start: LatLng(1.319728, 103.8421),
-        end: LatLng(1.315728905, 103.8121581),
-        routeType: RouteType.cycle,
-        token: token);
+    Route route = await oneMap.routing.getRoute(
+      start: LatLng(1.319728, 103.8421),
+      end: LatLng(1.315728905, 103.8121581),
+      routeType: RouteType.cycle,
+    );
 
     print(route.subtitle);
     print(route.routeNames);
     print(route.routeGeometry);
+  } on MissingTokenException catch (e) {
+    // perform authentication here
+    print(e);
   } catch (e) {
     print(e);
   }
 
   try {
-    PublicTransportRoute ptRoute = await OneMap.instance.routing
-        .getPublicTransportRoute(
-            start: LatLng(1.320981, 103.844150),
-            end: LatLng(1.326762, 103.8559),
-            token: token,
-            dateTime: DateTime.now(),
-            mode: Mode.TRANSIT);
+    PublicTransportRoute ptRoute = await oneMap.routing.getPublicTransportRoute(
+        start: LatLng(1.320981, 103.844150),
+        end: LatLng(1.326762, 103.8559),
+        dateTime: DateTime.now(),
+        mode: Mode.TRANSIT);
 
     print(ptRoute.plan.itineraries.length);
     print(ptRoute.plan.itineraries[0].duration);
@@ -232,5 +243,8 @@ void routingExample() async {
     print(e);
     print(e.request.queryParameters);
     print(e.request.uri);
+  } on MissingTokenException catch (e) {
+    // perform authentication here
+    print(e);
   }
 }

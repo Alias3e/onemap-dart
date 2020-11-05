@@ -1,26 +1,25 @@
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
-import 'package:onemapsg/src/apis/authentication.dart';
+import 'package:onemapsg/src/apis/apis.dart';
+import 'package:onemapsg/src/missing_token_exception.dart';
 import 'package:onemapsg/src/models/planning_area_api/planning_area.dart';
 
 /// APIs that provide data related to the planning area of Singapore.
-class PlanningAreaApi {
-  final Dio _dio;
-
-  PlanningAreaApi(this._dio);
+class PlanningAreaApi extends Api {
+  PlanningAreaApi(Dio dio, Authentication authentication)
+      : super(dio, authentication);
 
   /// Provides users with information of Singapore’s planning area.
   /// https://docs.onemap.sg/#planning-area-polygons
   ///
-  /// * [token] is retrieved using [Authentication.getToken].
   /// * Planning [year] that you are retrieving. Available are 1998,2008,2014
-  Future<List<PlanningArea>> getAllPlanningAreas(
-      {@required String token, String year}) async {
-    Map<String, String> queryParameters = {'token': token};
+  Future<List<PlanningArea>> getAllPlanningAreas({String year}) async {
+    if (authentication.accessToken.isEmpty) throw MissingTokenException();
+    Map<String, String> queryParameters = {'token': authentication.accessToken};
     if (year != null && year.isNotEmpty)
       queryParameters.putIfAbsent('year', () => year);
-    var response = await _dio.get('/privateapi/popapi/getAllPlanningarea',
-        queryParameters: {'token': token});
+    var response = await dio.get('/privateapi/popapi/getAllPlanningarea',
+        queryParameters: queryParameters);
     List<PlanningArea> areas =
         (response.data as List).map((i) => PlanningArea.fromJson(i)).toList();
     return areas;
@@ -29,14 +28,13 @@ class PlanningAreaApi {
   /// Retrieve the names of every planning area in Singapore.
   /// https://docs.onemap.sg/#names-of-planning-area
   ///
-  /// * [token] is retrieved using [Authentication.getToken].
   /// * Planning [year] that you are retrieving. Available are 1998,2008,2014
-  Future<List<PlanningArea>> getPlanningAreasName(
-      {@required String token, String year}) async {
-    Map<String, String> queryParameters = {'token': token};
+  Future<List<PlanningArea>> getPlanningAreasName({String year}) async {
+    if (authentication.accessToken.isEmpty) throw MissingTokenException();
+    Map<String, String> queryParameters = {'token': authentication.accessToken};
     if (year != null && year.isNotEmpty)
       queryParameters.putIfAbsent('year', () => year);
-    var response = await _dio.get('/privateapi/popapi/getPlanningareaNames',
+    var response = await dio.get('/privateapi/popapi/getPlanningareaNames',
         queryParameters: queryParameters);
     List<PlanningArea> areas =
         (response.data as List).map((i) => PlanningArea.fromJson(i)).toList();
@@ -46,22 +44,21 @@ class PlanningAreaApi {
   /// Retrieve a single planning area based on given latitude and longitude.
   /// https://docs.onemap.sg/#planning-area-query
   ///
-  /// * [token] is retrieved using [Authentication.getToken].
   /// * Planning [year] that you are retrieving. Available are 1998,2008,2014
   /// * Retrieve planning area based on [latitude] and [longitude].
   Future<List<PlanningArea>> getPlanningArea(
-      {@required String token,
-      @required double latitude,
+      {@required double latitude,
       @required double longitude,
       String year}) async {
+    if (authentication.accessToken.isEmpty) throw MissingTokenException();
     Map<String, String> queryParameters = {
-      'token': token,
+      'token': authentication.accessToken,
       'lat': latitude.toString(),
       'lng': longitude.toString()
     };
     if (year != null && year.isNotEmpty)
       queryParameters.putIfAbsent('year', () => year);
-    var response = await _dio.get('/privateapi/popapi/getPlanningarea',
+    var response = await dio.get('/privateapi/popapi/getPlanningarea',
         queryParameters: queryParameters);
     List<PlanningArea> areas =
         (response.data as List).map((i) => PlanningArea.fromJson(i)).toList();

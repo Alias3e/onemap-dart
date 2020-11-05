@@ -6,7 +6,9 @@ import 'package:onemapsg/src/models/models.dart';
 class Authentication {
   final Dio _dio;
 
-  Authentication(this._dio);
+  String accessToken;
+
+  Authentication(this._dio, {this.accessToken});
 
   /// Authenticate user to get access token in order to request private APIs.
   /// Users are required to register for an account on https://docs.onemap.sg/#register-free-account
@@ -20,6 +22,9 @@ class Authentication {
   }) async {
     var result = await _dio.post('/privateapi/auth/post/getToken',
         data: {'email': email, 'password': password});
-    return OneMapCredentials.fromJson(result.data);
+
+    OneMapCredentials credentials = OneMapCredentials.fromJson(result.data);
+    accessToken = credentials.accessToken;
+    return credentials;
   }
 }

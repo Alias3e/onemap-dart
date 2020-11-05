@@ -2,13 +2,14 @@ import 'package:dio/dio.dart';
 import 'package:intl/intl.dart';
 import 'package:latlong/latlong.dart';
 import 'package:meta/meta.dart';
+import 'package:onemapsg/src/apis/api.dart';
+import 'package:onemapsg/src/apis/apis.dart';
+import 'package:onemapsg/src/missing_token_exception.dart';
 import 'package:onemapsg/src/models/routing/routing.dart';
 
 /// API to find different routes between 2 points using various mode of transport.
-class Routing {
-  final Dio _dio;
-
-  Routing(this._dio);
+class Routing extends Api {
+  Routing(Dio dio, Authentication authentication) : super(dio, authentication);
 
   ///
   /// Calculates the distance and returns the drawn path between the specified
@@ -18,20 +19,19 @@ class Routing {
   /// * [start] point of the journey in [LatLng].
   /// * [end] point of journey in [LatLng].
   /// * [routeType] could be [RouteType.walk], [RouteType.cycle] or [RouteType.drive].
-  /// * [token] is retrieved using [Authentication.getToken]
   Future<Route> getRoute({
     @required LatLng start,
     @required LatLng end,
     @required RouteType routeType,
-    @required String token,
   }) async {
-    var result = await _dio.get(
+    if (authentication.accessToken.isEmpty) throw MissingTokenException();
+    var result = await dio.get(
       '/privateapi/routingsvc/route',
       queryParameters: {
         'start': '${start.latitude},${start.longitude}',
         'end': '${end.latitude},${end.longitude}',
         'routeType': routeType.asString(),
-        'token': token
+        'token': authentication.accessToken
       },
     );
 
@@ -44,7 +44,6 @@ class Routing {
   ///
   /// * [start] point of the journey in [LatLng].
   /// * [end] point of journey in [LatLng].
-  /// * [token] is retrieved using [Authentication.getToken]
   /// * [dateTime] indicates the starting time of the journey.
   /// * [mode] of transport. [Mode.RAIL], [Mode.BUS] or [Mode.TRANSIT].
   /// * [maxWalkDistance] is the maximum walking distance in meters allowed for the route.
@@ -52,19 +51,19 @@ class Routing {
   Future<PublicTransportRoute> getPublicTransportRoute({
     @required LatLng start,
     @required LatLng end,
-    @required String token,
     @required DateTime dateTime,
     @required Mode mode,
     int maxWalkDistance,
     int numItineraries,
   }) async {
+    if (authentication.accessToken.isEmpty) throw MissingTokenException();
     String date = DateFormat('y-MM-dd').format(dateTime);
     String time = DateFormat('HH:mm:ss').format(dateTime);
     Map<String, dynamic> params = {
       'start': '${start.latitude},${start.longitude}',
       'end': '${end.latitude},${end.longitude}',
       'routeType': 'pt',
-      'token': token,
+      'token': authentication.accessToken,
       'date': date,
       'time': time,
       'mode': mode.asString(),
@@ -79,7 +78,7 @@ class Routing {
     }
 
     var result =
-        await _dio.get('/privateapi/routingsvc/route', queryParameters: params);
+        await dio.get('/privateapi/routingsvc/route', queryParameters: params);
 
     return PublicTransportRoute.fromJson(result.data);
   }

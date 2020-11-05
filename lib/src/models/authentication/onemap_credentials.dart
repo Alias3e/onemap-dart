@@ -15,6 +15,9 @@ class OneMapCredentials {
       toJson: JsonTypeAdapter.intToString)
   int expiryTimestamp;
 
+  DateTime get expiry =>
+      DateTime.fromMillisecondsSinceEpoch(expiryTimestamp * 1000);
+
   OneMapCredentials(this.accessToken, this.expiryTimestamp);
 
   factory OneMapCredentials.fromJson(Map<String, dynamic> json) =>

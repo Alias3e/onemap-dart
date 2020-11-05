@@ -22,27 +22,24 @@ class OneMap {
   PopulationQuery _populationQuery;
   Routing _routing;
 
-  /// Private constructor to initial this instance;
-  OneMap._privateConstructor() {
+  OneMap({this.connectTimeout, this.receiveTimeout, String accessToken}) {
     BaseOptions options = BaseOptions(
         connectTimeout: connectTimeout,
         receiveTimeout: receiveTimeout,
         baseUrl: 'https://developers.onemap.sg');
     _dio = Dio(options);
+    _authentication = Authentication(_dio,
+        accessToken: accessToken == null ? '' : accessToken);
   }
-
-  /// Get the instance of an OneMap object.
-  static final OneMap instance = OneMap._privateConstructor();
 
   /// OneMap [Authentication] APIs.
   Authentication get authentication {
-    _authentication ??= Authentication(_dio);
     return _authentication;
   }
 
   /// OneMap REST APIs such as search and reverse geocoding.
   RestApi get restApi {
-    _restApi ??= RestApi(_dio);
+    _restApi ??= RestApi(_dio, _authentication);
     return _restApi;
   }
 
@@ -54,26 +51,26 @@ class OneMap {
 
   // Provides thematic information(dengue cluster, kindergartens etc) from various agencies.
   ThemesApi get themes {
-    _themes ??= ThemesApi(_dio);
+    _themes ??= ThemesApi(_dio, _authentication);
     return _themes;
   }
 
   // APIs to retrieve data related to the planning area of Singapore.
   PlanningAreaApi get planningArea {
-    _planningArea ??= PlanningAreaApi(_dio);
+    _planningArea ??= PlanningAreaApi(_dio, _authentication);
     return _planningArea;
   }
 
   /// Set of APIs to retrieve population datasets provided by the Department Of Statistics for analytical needs.
   PopulationQuery get populationQuery {
-    _populationQuery ??= PopulationQuery(_dio);
+    _populationQuery ??= PopulationQuery(_dio, _authentication);
     return _populationQuery;
   }
 
   /// Retrieve routes given starting point to destination using various modes of
   /// transportation.
   Routing get routing {
-    _routing ??= Routing(_dio);
+    _routing ??= Routing(_dio, _authentication);
     return _routing;
   }
 }

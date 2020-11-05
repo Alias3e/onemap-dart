@@ -2,12 +2,12 @@ import 'package:onemapsg/src/onemapsg.dart';
 
 main() async {
   String token =
-      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjUyNzgsInVzZXJfaWQiOjUyNzgsImVtYWlsIjoiYm9yaW5nLmFwcHMuc2dAZ21haWwuY29tIiwiZm9yZXZlciI6ZmFsc2UsImlzcyI6Imh0dHA6XC9cL29tMi5kZmUub25lbWFwLnNnXC9hcGlcL3YyXC91c2VyXC9zZXNzaW9uIiwiaWF0IjoxNjAzMzI5MDkyLCJleHAiOjE2MDM3NjEwOTIsIm5iZiI6MTYwMzMyOTA5MiwianRpIjoiOThkODE1MGM2OGQ0NzEwNGU0MGMwOWU0M2QyMDdiODYifQ.mdcZ04EMoExIRvUub9katN57luOwD5LiBikg0Y9ko4E';
-
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjUyNzgsInVzZXJfaWQiOjUyNzgsImVtYWlsIjoiYm9yaW5nLmFwcHMuc2dAZ21haWwuY29tIiwiZm9yZXZlciI6ZmFsc2UsImlzcyI6Imh0dHA6XC9cL29tMi5kZmUub25lbWFwLnNnXC9hcGlcL3YyXC91c2VyXC9zZXNzaW9uIiwiaWF0IjoxNjA0NTU5NjEwLCJleHAiOjE2MDQ5OTE2MTAsIm5iZiI6MTYwNDU1OTYxMCwianRpIjoiY2Y5MzZhYWE5YjExYThjMTQ2ODI1MTJlYTU3ZDkwZDcifQ.USyyrjxY-ypmPo06yfIG037Jpe5O2FUbSHbnyVvwCZc';
+  OneMap oneMap = OneMap(accessToken: token);
   // Authenticate and retrieve token
 //  try {
-//    OneMapCredentials credentials = await OneMap.instance.authentication
-//        .getToken(email: '', password: '');
+//    OneMapCredentials credentials =
+//        await oneMap.authentication.getToken(email: '', password: '');
 //    if (credentials.accessToken.isNotEmpty) token = credentials.accessToken;
 //    print(credentials.accessToken);
 //  } catch (e) {
@@ -15,12 +15,8 @@ main() async {
 //  }
 
   try {
-    List<EconomicStatus> status = await OneMap.instance.populationQuery
-        .economicStatus(
-            token: token,
-            year: 2010,
-            planningArea: "Bedok",
-            gender: Gender.Female);
+    List<EconomicStatus> status = await oneMap.populationQuery.economicStatus(
+        year: 2010, planningArea: "Bedok", gender: Gender.Female);
     print('==================== Economic Status ====================');
     // First entry in list is for Male data & second entry is for Female data if
     // the gender is not specified. Otherwise, list contains only a single entry.
@@ -33,8 +29,8 @@ main() async {
   }
 
   try {
-    EducationStatus status = await OneMap.instance.populationQuery
-        .educationStatus(token: token, year: 2010, planningArea: "KALLANG");
+    EducationStatus status = await oneMap.populationQuery
+        .educationStatus(year: 2010, planningArea: "KALLANG");
 
     print('==================== Education Status ====================');
     print(status.university);
@@ -43,9 +39,7 @@ main() async {
   }
 
   try {
-    EthnicDistribution status =
-        await OneMap.instance.populationQuery.ethnicDistribution(
-      token: token,
+    EthnicDistribution status = await oneMap.populationQuery.ethnicDistribution(
       year: 2010,
       planningArea: 'KALLANG',
     );
@@ -61,8 +55,7 @@ main() async {
 
   try {
     HouseholdMonthlyIncome status =
-        await OneMap.instance.populationQuery.householdMonthlyIncomeFromWork(
-      token: token,
+        await oneMap.populationQuery.householdMonthlyIncomeFromWork(
       year: 2010,
       planningArea: 'BEDOK',
     );
@@ -78,8 +71,7 @@ main() async {
   }
 
   try {
-    HouseholdSize data = await OneMap.instance.populationQuery.householdSize(
-      token: token,
+    HouseholdSize data = await oneMap.populationQuery.householdSize(
       year: 2010,
       planningArea: 'BEDOK',
     );
@@ -93,9 +85,7 @@ main() async {
   }
 
   try {
-    HouseholdStructure data =
-        await OneMap.instance.populationQuery.householdStructure(
-      token: token,
+    HouseholdStructure data = await oneMap.populationQuery.householdStructure(
       year: 2010,
       planningArea: 'BEDOK',
     );
@@ -109,8 +99,7 @@ main() async {
   }
 
   try {
-    IncomeFromWork data = await OneMap.instance.populationQuery.incomeFromWork(
-      token: token,
+    IncomeFromWork data = await oneMap.populationQuery.incomeFromWork(
       year: 2010,
       planningArea: 'BEDOK',
     );
@@ -124,8 +113,7 @@ main() async {
   }
 
   try {
-    Industry data = await OneMap.instance.populationQuery.industry(
-      token: token,
+    Industry data = await oneMap.populationQuery.industry(
       year: 2010,
       planningArea: 'BEDOK',
     );
@@ -139,9 +127,7 @@ main() async {
   }
 
   try {
-    LanguageLiteracy data =
-        await OneMap.instance.populationQuery.languageLiteracy(
-      token: token,
+    LanguageLiteracy data = await oneMap.populationQuery.languageLiteracy(
       year: 2010,
       planningArea: 'BEDOK',
     );
@@ -155,9 +141,7 @@ main() async {
   }
 
   try {
-    List<MaritalStatus> data =
-        await OneMap.instance.populationQuery.maritalStatus(
-      token: token,
+    List<MaritalStatus> data = await oneMap.populationQuery.maritalStatus(
       year: 2010,
       planningArea: 'Kallang',
 //      gender: Gender.Female,
@@ -176,8 +160,7 @@ main() async {
 
   try {
     Transportation data =
-        await OneMap.instance.populationQuery.modeOfTransportationToSchool(
-      token: token,
+        await oneMap.populationQuery.modeOfTransportationToSchool(
       year: 2010,
       planningArea: 'BEDOK',
     );
@@ -193,8 +176,7 @@ main() async {
 
   try {
     Transportation data =
-        await OneMap.instance.populationQuery.modeOfTransportationToWork(
-      token: token,
+        await oneMap.populationQuery.modeOfTransportationToWork(
       year: 2010,
       planningArea: 'BEDOK',
     );
@@ -209,8 +191,7 @@ main() async {
   }
 
   try {
-    Occupation data = await OneMap.instance.populationQuery.occupation(
-      token: token,
+    Occupation data = await oneMap.populationQuery.occupation(
       year: 2010,
       planningArea: 'BEDOK',
     );
@@ -224,8 +205,7 @@ main() async {
   }
 
   try {
-    List<Age> data = await OneMap.instance.populationQuery.age(
-      token: token,
+    List<Age> data = await oneMap.populationQuery.age(
       year: 2010,
       planningArea: 'Marine Parade',
 //      gender: Gender.Male,
@@ -243,8 +223,7 @@ main() async {
   }
 
   try {
-    Religion data = await OneMap.instance.populationQuery.religion(
-      token: token,
+    Religion data = await oneMap.populationQuery.religion(
       year: 2010,
       planningArea: 'BUKIT TIMAH',
     );
@@ -258,9 +237,7 @@ main() async {
   }
 
   try {
-    SpokenLanguages data =
-        await OneMap.instance.populationQuery.spokenLanguages(
-      token: token,
+    SpokenLanguages data = await oneMap.populationQuery.spokenLanguages(
       year: 2010,
       planningArea: 'TOA PAYOH',
     );
@@ -274,8 +251,7 @@ main() async {
   }
 
   try {
-    Tenancy data = await OneMap.instance.populationQuery.tenancy(
-      token: token,
+    Tenancy data = await oneMap.populationQuery.tenancy(
       year: 2010,
       planningArea: 'TOA PAYOH',
     );
@@ -290,8 +266,7 @@ main() async {
 
   try {
     HouseholdDwellingType data =
-        await OneMap.instance.populationQuery.householdDwellingType(
-      token: token,
+        await oneMap.populationQuery.householdDwellingType(
       year: 2010,
       planningArea: 'BEDOK',
     );
@@ -306,8 +281,7 @@ main() async {
 
   try {
     PopulationDwellingType data =
-        await OneMap.instance.populationQuery.populationDwellingType(
-      token: token,
+        await oneMap.populationQuery.populationDwellingType(
       year: 2010,
       planningArea: 'BEDOK',
     );

@@ -1,34 +1,33 @@
 import 'package:dio/dio.dart';
 import 'package:intl/intl.dart';
 import 'package:meta/meta.dart';
+import 'package:onemapsg/src/missing_token_exception.dart';
 import 'package:onemapsg/src/onemapsg.dart';
 
 /// SDK to retrieve a compilation of thematic information from various agencies.
-class ThemesApi {
-  final Dio _dio;
-
-  ThemesApi(this._dio);
+class ThemesApi extends Api {
+  ThemesApi(Dio dio, Authentication authentication)
+      : super(dio, authentication);
 
   /// Check the updatedness of themes.
   /// https://docs.onemap.sg/#check-theme-status
   ///
-  /// * OneMap [token] retrieved from [Authentication.getToken].
   /// * Queries status of a theme using [queryName]. Themes’ query names can be retrieved using [getAllThemesInfo].
   /// * [dateTime] to check against.
   Future<Status> checkThemeStatus({
-    @required String token,
     @required String queryName,
     @required DateTime dateTime,
   }) async {
+    if (authentication.accessToken.isEmpty) throw MissingTokenException();
     //YYYY-MM-DDTHH:MM:SS:FFFZ
     //2015-02-10T16:00:00.000Z
     //2020-10-18T20:44:14.559Z
     DateFormat dateFormat = DateFormat("y-MM-ddTHH:mm:ss.S'Z'");
     String dateTimeString = dateFormat.format(dateTime);
     print(dateTimeString);
-    var response = await _dio
+    var response = await dio
         .get('/privateapi/themesvc/checkThemeStatus', queryParameters: {
-      'token': token,
+      'token': authentication.accessToken,
       'dateTime': dateTimeString,
       'queryName': queryName,
     });
@@ -37,15 +36,14 @@ class ThemesApi {
   }
 
   /// Search themes via the [queryName] and returns the themes’ info. Requires
-  /// [token] retrieved using [Authentication.getToken].
   /// https://docs.onemap.sg/#get-theme-info
   Future<ThemeInfo> getThemeInfo({
-    String token,
     String queryName,
   }) async {
+    if (authentication.accessToken.isEmpty) throw MissingTokenException();
     var response =
-        await _dio.get('/privateapi/themesvc/getThemeInfo', queryParameters: {
-      'token': token,
+        await dio.get('/privateapi/themesvc/getThemeInfo', queryParameters: {
+      'token': authentication.accessToken,
       'queryName': queryName,
     });
 
@@ -55,16 +53,15 @@ class ThemesApi {
   /// Retrieves and returns a list of all available themes.
   /// https://docs.onemap.sg/#get-all-themes-info
   ///
-  /// * OneMap [token] retrieved from [Authentication.getToken].
   /// * [moreInfo] requests for additional information (icon, category & theme owner).
   /// Defaults to false.
   Future<ThemeInfo> getAllThemesInfo({
-    String token,
     bool moreInfo = false,
   }) async {
-    var response = await _dio
+    if (authentication.accessToken.isEmpty) throw MissingTokenException();
+    var response = await dio
         .get('/privateapi/themesvc/getAllThemesInfo', queryParameters: {
-      'token': token,
+      'token': authentication.accessToken,
       'moreInfo': moreInfo ? 'Y' : 'N',
     });
 
@@ -75,25 +72,24 @@ class ThemesApi {
   /// https://docs.onemap.sg/#retrieve-theme
   ///
   /// * Enables users to retrieve theme information. Themes’ query names can be retrieved using [getAllThemesInfo].
-  /// * OneMap [token] retrieved from [Authentication.getToken].
   /// * Define the extent of map to retrieve theme data using [top], [bottom], [left] and [right].
   Future<Themes> retrieveThemes({
-    @required token,
     @required queryName,
     double top,
     double bottom,
     double left,
     double right,
   }) async {
+    if (authentication.accessToken.isEmpty) throw MissingTokenException();
     Map<String, dynamic> queryParams = {
-      'token': token,
+      'token': authentication.accessToken,
       'queryName': queryName,
     };
     if (top != 0.0 && bottom != 0.0 && left != 0.0 && right != 0.0) {
       String extent = '$bottom,$left,$top,$right';
       queryParams.putIfAbsent('extent', () => extent);
     }
-    var response = await _dio.get('/privateapi/themesvc/retrieveTheme',
+    var response = await dio.get('/privateapi/themesvc/retrieveTheme',
         queryParameters: queryParams);
     return Themes.fromJson(response.data);
   }

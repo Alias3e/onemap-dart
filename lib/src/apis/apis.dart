@@ -1,3 +1,4 @@
+export 'api.dart';
 export 'authentication.dart';
 export 'coordinate_converter.dart';
 export 'onemap.dart';
