@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:onemapsg/src/models/type_adapter.dart';
 
 part 'planning_area.g.dart';
 
@@ -12,7 +13,10 @@ class PlanningArea {
   @JsonKey(name: 'pln_area_n')
   String planningAreaName;
 
-  @JsonKey(name: 'geojson')
+  @JsonKey(
+      name: 'geojson',
+      toJson: JsonTypeAdapter.emptyToNull,
+      fromJson: JsonTypeAdapter.emptyFromNull)
   String geoJsonString;
 
   /// Returns [geoJson] as a [Map]. If there are decoding errors, please

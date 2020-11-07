@@ -10,14 +10,17 @@ OneMap oneMap;
 Future<void> main() async {
   oneMap = OneMap(accessToken: token);
   // Authenticate and retrieve token
-  try {
-    OneMapCredentials credentials =
-        await oneMap.authentication.getToken(email: '', password: '');
-    // Cache accessToken if needed here, expiry timestamp is included.
-    print(credentials.accessToken);
-    print(credentials.expiry);
-  } catch (e) {
-    print(e);
+
+  if (oneMap.authentication.accessToken.isEmpty) {
+    try {
+      OneMapCredentials credentials =
+          await oneMap.authentication.getToken(email: '', password: '');
+      // Cache accessToken if needed here, expiry timestamp is included.
+      print(credentials.accessToken);
+      print(credentials.expiry);
+    } catch (e) {
+      print(e);
+    }
   }
 
   restApiExample();
@@ -149,7 +152,7 @@ void planningAreaExample() async {
   try {
     List<PlanningArea> planningArea =
         await oneMap.planningArea.getPlanningAreasName();
-    print(planningArea.length);
+    print(planningArea[0].planningAreaName);
   } catch (e) {
     print(e);
   }
@@ -222,6 +225,7 @@ void routingExample() async {
     print(route.subtitle);
     print(route.routeNames);
     print(route.routeGeometry);
+    print(route.encodedRouteGeometry);
   } on MissingTokenException catch (e) {
     // perform authentication here
     print(e);
@@ -239,6 +243,7 @@ void routingExample() async {
     print(ptRoute.plan.itineraries.length);
     print(ptRoute.plan.itineraries[0].duration);
     print(ptRoute.plan.itineraries[0].legs[0].legGeometry);
+    print(ptRoute.plan.itineraries[0].legs[0].encodedLegGeometry.points);
   } on DioError catch (e) {
     print(e);
     print(e.request.queryParameters);
