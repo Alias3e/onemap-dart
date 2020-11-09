@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
-import 'package:onemapsg/src/models/models.dart';
+
+import '../models/authentication/onemap_credentials.dart';
 
 /// Provides authentication with OneMap service.
 class Authentication {

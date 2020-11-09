@@ -1,11 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:latlong/latlong.dart';
-import 'package:onemapsg/src/models/routing/geometry_decoder.dart';
-import 'package:onemapsg/src/models/routing/leg_geometry.dart';
-import 'package:onemapsg/src/models/routing/routing.dart';
-import 'package:onemapsg/src/models/routing/step.dart';
-import 'package:onemapsg/src/models/routing/transit_vertex.dart';
-import 'package:onemapsg/src/models/type_adapter.dart';
+
+import '../type_adapter.dart';
+import 'routing.dart';
 
 part 'leg.g.dart';
 

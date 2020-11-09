@@ -1,4 +1,4 @@
-import 'package:onemapsg/src/models/population_query/population_data.dart';
+import 'population_data.dart';
 
 /// Parent class for population data with gender field.
 abstract class GenderData extends PopulationData {

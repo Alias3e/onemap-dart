@@ -1,5 +1,7 @@
 import 'package:latlong/latlong.dart';
-import 'package:onemapsg/src/models/routing/routing.dart';
+
+import 'plan_vertex.dart';
+import 'transit_vertex.dart';
 
 /// Base class for [PlanVertex] and [TransitVertex]. Represent a point in
 /// the route.

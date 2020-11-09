@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:onemapsg/src/models/population_query/gender_data.dart';
+
+import 'gender_data.dart';
 
 part 'economic_status.g.dart';
 

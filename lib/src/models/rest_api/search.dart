@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:onemapsg/src/models/models.dart';
+
+import 'search_result.dart';
 
 part 'search.g.dart';
 

@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:onemapsg/src/models/routing/itinerary.dart';
-import 'package:onemapsg/src/models/routing/plan_vertex.dart';
+
+import 'itinerary.dart';
+import 'plan_vertex.dart';
 
 part 'plan.g.dart';
 

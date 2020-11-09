@@ -2,10 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:intl/intl.dart';
 import 'package:latlong/latlong.dart';
 import 'package:meta/meta.dart';
-import 'package:onemapsg/src/apis/api.dart';
-import 'package:onemapsg/src/apis/apis.dart';
-import 'package:onemapsg/src/missing_token_exception.dart';
-import 'package:onemapsg/src/models/routing/routing.dart';
+
+import '../../src/models/routing/routing.dart';
+import '../missing_token_exception.dart';
+import 'apis.dart';
 
 /// API to find different routes between 2 points using various mode of transport.
 class Routing extends Api {

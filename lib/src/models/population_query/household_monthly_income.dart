@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:onemapsg/src/models/population_query/population_data.dart';
+
+import 'population_data.dart';
 
 part 'household_monthly_income.g.dart';
 

@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:latlong/latlong.dart';
-import 'package:onemapsg/src/models/routing/leg.dart';
+
+import 'leg.dart';
 
 part 'step.g.dart';
 

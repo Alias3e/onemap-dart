@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
-import 'package:onemapsg/src/models/models.dart';
+
+import '../../src/models/coordinate/coordinate.dart';
 
 /// Provides coordinate conversion between EPSG:4326, EPSG:3857 and EPSG:3414
 /// spatial references.

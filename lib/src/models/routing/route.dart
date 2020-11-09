@@ -1,7 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:latlong/latlong.dart';
-import 'package:onemapsg/src/models/routing/geometry_decoder.dart';
-import 'package:onemapsg/src/models/routing/route_summary.dart';
+
+import 'geometry_decoder.dart';
+import 'route_summary.dart';
 
 part 'route.g.dart';
 
@@ -32,8 +33,7 @@ class Route with GeometryDecoder {
   String subtitle;
 
   List<LatLng> get routeGeometry =>
-    decode(isPublicTransport: false, encodedString: encodedRouteGeometry);
-
+      decode(isPublicTransport: false, encodedString: encodedRouteGeometry);
 
   Route(
       this.status,

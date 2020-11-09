@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:onemapsg/src/models/onemap_theme/onemap_theme.dart';
+
+import 'onemap_theme.dart';
 
 part 'theme_results_overview.g.dart';
 

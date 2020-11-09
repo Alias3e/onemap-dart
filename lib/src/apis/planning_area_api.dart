@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
-import 'package:onemapsg/src/apis/apis.dart';
-import 'package:onemapsg/src/missing_token_exception.dart';
-import 'package:onemapsg/src/models/planning_area_api/planning_area.dart';
+
+import '../../src/models/planning_area_api/planning_area.dart';
+import '../missing_token_exception.dart';
+import 'apis.dart';
 
 /// APIs that provide data related to the planning area of Singapore.
 class PlanningAreaApi extends Api {

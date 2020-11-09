@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:latlong/latlong.dart';
-import 'package:onemapsg/src/models/onemap_theme/theme_result.dart';
+
+import 'theme_result.dart';
 
 part 'theme_results_item.g.dart';
 

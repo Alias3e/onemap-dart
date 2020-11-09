@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
-import 'package:onemapsg/src/apis/apis.dart';
+
+import 'authentication.dart';
 
 abstract class Api {
   @protected

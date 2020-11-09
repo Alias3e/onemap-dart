@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:onemapsg/src/models/routing/routing.dart';
+
+import 'routing.dart';
 
 part 'public_transport_route.g.dart';
 

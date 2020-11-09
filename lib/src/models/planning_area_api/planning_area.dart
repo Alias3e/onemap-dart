@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:onemapsg/src/models/type_adapter.dart';
+
+import '../type_adapter.dart';
 
 part 'planning_area.g.dart';
 

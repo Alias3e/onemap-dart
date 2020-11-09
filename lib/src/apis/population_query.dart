@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
-import 'package:onemapsg/src/missing_token_exception.dart';
-import 'package:onemapsg/src/onemapsg.dart';
+
+import '../../src/models/population_query/population_query.dart';
+import '../missing_token_exception.dart';
+import 'apis.dart';
 
 class PopulationQuery extends Api {
   PopulationQuery(Dio dio, Authentication authentication)

@@ -1,7 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:onemapsg/src/models/routing/routing.dart';
-import 'package:onemapsg/src/models/routing/vertex.dart';
-import 'package:onemapsg/src/models/type_adapter.dart';
+
+import '../type_adapter.dart';
+import 'routing.dart';
+import 'vertex.dart';
 
 part 'transit_vertex.g.dart';
 
