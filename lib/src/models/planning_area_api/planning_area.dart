@@ -6,7 +6,7 @@ import '../type_adapter.dart';
 
 part 'planning_area.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, createToJson: false)
 
 /// Describes planning area with [planningAreaName] and geolocation data in [String] format([geoJsonString])
 /// or [Map] format([geoJson]).
@@ -14,10 +14,7 @@ class PlanningArea {
   @JsonKey(name: 'pln_area_n')
   String planningAreaName;
 
-  @JsonKey(
-      name: 'geojson',
-      toJson: JsonTypeAdapter.emptyToNull,
-      fromJson: JsonTypeAdapter.emptyFromNull)
+  @JsonKey(name: 'geojson', fromJson: JsonTypeAdapter.emptyFromNull)
   String geoJsonString;
 
   /// Returns [geoJson] as a [Map]. If there are decoding errors, please
@@ -41,7 +38,7 @@ class PlanningArea {
 
   PlanningArea(this.planningAreaName, this.geoJsonString);
 
+  /// @nodoc
   factory PlanningArea.fromJson(Map<String, dynamic> json) =>
       _$PlanningAreaFromJson(json);
-  Map<String, dynamic> toJson() => _$PlanningAreaToJson(this);
 }

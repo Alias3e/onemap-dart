@@ -1,9 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import 'population_data.dart';
 
 part 'religion.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Religion distribution data retrieved from population query.
 class Religion extends PopulationData {
@@ -43,7 +44,7 @@ class Religion extends PopulationData {
       int year)
       : super(planningArea, year);
 
+  /// @nodoc
   factory Religion.fromJson(Map<String, dynamic> json) =>
       _$ReligionFromJson(json);
-  Map<String, dynamic> toJson() => _$ReligionToJson(this);
 }

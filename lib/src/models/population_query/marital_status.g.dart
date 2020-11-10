@@ -17,14 +17,3 @@ MaritalStatus _$MaritalStatusFromJson(Map<String, dynamic> json) {
     json['year'] as int,
   );
 }
-
-Map<String, dynamic> _$MaritalStatusToJson(MaritalStatus instance) =>
-    <String, dynamic>{
-      'planning_area': instance.planningArea,
-      'year': instance.year,
-      'gender': instance.gender,
-      'single': instance.single,
-      'married': instance.married,
-      'widowed': instance.widowed,
-      'divorced': instance.divorced,
-    };

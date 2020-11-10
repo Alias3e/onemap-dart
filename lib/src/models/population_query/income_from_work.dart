@@ -4,7 +4,7 @@ import 'population_data.dart';
 
 part 'income_from_work.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Income information retrieved from population query.
 class IncomeFromWork extends PopulationData {
@@ -57,7 +57,7 @@ class IncomeFromWork extends PopulationData {
       int year)
       : super(planningArea, year);
 
+  /// @nodoc
   factory IncomeFromWork.fromJson(Map<String, dynamic> json) =>
       _$IncomeFromWorkFromJson(json);
-  Map<String, dynamic> toJson() => _$IncomeFromWorkToJson(this);
 }

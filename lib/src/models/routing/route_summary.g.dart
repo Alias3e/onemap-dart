@@ -14,11 +14,3 @@ RouteSummary _$RouteSummaryFromJson(Map<String, dynamic> json) {
     json['total_time'] as int,
   );
 }
-
-Map<String, dynamic> _$RouteSummaryToJson(RouteSummary instance) =>
-    <String, dynamic>{
-      'end_point': instance.endPoint,
-      'start_point': instance.startPoint,
-      'total_time': instance.totalTime,
-      'total_distance': instance.totalDistance,
-    };

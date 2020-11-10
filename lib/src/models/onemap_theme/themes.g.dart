@@ -11,7 +11,3 @@ Themes _$ThemesFromJson(Map<String, dynamic> json) {
     Themes._fromJson(json['SrchResults'] as List),
   );
 }
-
-Map<String, dynamic> _$ThemesToJson(Themes instance) => <String, dynamic>{
-      'SrchResults': Themes._toJson(instance.results),
-    };

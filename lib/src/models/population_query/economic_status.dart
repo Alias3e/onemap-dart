@@ -4,7 +4,7 @@ import 'gender_data.dart';
 
 part 'economic_status.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Contains the economic status retrieved from population query.
 class EconomicStatus extends GenderData {
@@ -18,7 +18,7 @@ class EconomicStatus extends GenderData {
       String planningArea, int year)
       : super(gender, planningArea, year);
 
+  /// @nodoc
   factory EconomicStatus.fromJson(Map<String, dynamic> json) =>
       _$EconomicStatusFromJson(json);
-  Map<String, dynamic> toJson() => _$EconomicStatusToJson(this);
 }

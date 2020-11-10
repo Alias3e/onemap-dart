@@ -20,17 +20,3 @@ SearchResult _$SearchResultFromJson(Map<String, dynamic> json) {
     longitude: JsonTypeAdapter.doubleFromString(json['LONGITUDE'] as String),
   );
 }
-
-Map<String, dynamic> _$SearchResultToJson(SearchResult instance) =>
-    <String, dynamic>{
-      'SEARCHVAL': instance.searchValue,
-      'BLK_NO': instance.blockNumber,
-      'ROAD_NAME': instance.roadName,
-      'BUILDING': instance.building,
-      'ADDRESS': instance.address,
-      'POSTAL': instance.postal,
-      'X': JsonTypeAdapter.doubleToString(instance.x),
-      'Y': JsonTypeAdapter.doubleToString(instance.y),
-      'LATITUDE': JsonTypeAdapter.doubleToString(instance.latitude),
-      'LONGITUDE': JsonTypeAdapter.doubleToString(instance.longitude),
-    };

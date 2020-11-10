@@ -52,36 +52,3 @@ Leg _$LegFromJson(Map<String, dynamic> json) {
     JsonTypeAdapter.emptyFromNull(json['tripId']),
   );
 }
-
-Map<String, dynamic> _$LegToJson(Leg instance) => <String, dynamic>{
-      'startTime': instance.startTimestamp,
-      'endTime': instance.endTimestamp,
-      'departureDelay': instance.departureDelay,
-      'arrivalDelay': instance.arrivalDelay,
-      'realTime': instance.realTime,
-      'distance': instance.distance,
-      'pathway': instance.pathway,
-      'mode': instance.mode,
-      'route': instance.route,
-      'agencyName': JsonTypeAdapter.emptyToNull(instance.agencyName),
-      'agencyUrl': JsonTypeAdapter.emptyToNull(instance.agencyUrl),
-      'agencyTimeZoneOffset': instance.agencyTimeZoneOffset,
-      'routeType': JsonTypeAdapter.nullToZero(instance.routeType),
-      'routeId': JsonTypeAdapter.emptyToNull(instance.routeId),
-      'interlineWithPreviousLeg': instance.interlineWithPreviousLeg,
-      'agencyId': JsonTypeAdapter.emptyToNull(instance.agencyId),
-      'tripId': JsonTypeAdapter.emptyToNull(instance.tripId),
-      'serviceDate': JsonTypeAdapter.emptyToNull(instance.serviceDate),
-      'from': instance.from?.toJson(),
-      'to': instance.to?.toJson(),
-      'legGeometry': instance.encodedLegGeometry?.toJson(),
-      'routeShortName': JsonTypeAdapter.emptyToNull(instance.routeShortName),
-      'routeLongName': JsonTypeAdapter.emptyToNull(instance.routeLongName),
-      'rentedBike': instance.rentedBike,
-      'transitLeg': instance.transitLeg,
-      'duration': instance.duration,
-      'intermediateStops':
-          instance.intermediateStops?.map((e) => e?.toJson())?.toList(),
-      'steps': instance.steps?.map((e) => e?.toJson())?.toList(),
-      'numIntermediateStops': instance.numIntermediateStops,
-    };

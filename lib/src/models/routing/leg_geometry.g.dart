@@ -12,9 +12,3 @@ LegGeometry _$LegGeometryFromJson(Map<String, dynamic> json) {
     json['points'] as String,
   );
 }
-
-Map<String, dynamic> _$LegGeometryToJson(LegGeometry instance) =>
-    <String, dynamic>{
-      'points': instance.points,
-      'length': instance.length,
-    };

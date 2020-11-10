@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'route_summary.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Summary of route when route type is drive, cycle or walk.
 class RouteSummary {
@@ -21,7 +21,7 @@ class RouteSummary {
   RouteSummary(
       this.endPoint, this.startPoint, this.totalDistance, this.totalTime);
 
+  /// @nodoc
   factory RouteSummary.fromJson(Map<String, dynamic> json) =>
       _$RouteSummaryFromJson(json);
-  Map<String, dynamic> toJson() => _$RouteSummaryToJson(this);
 }

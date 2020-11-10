@@ -4,7 +4,7 @@ import 'gender_data.dart';
 
 part 'age.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Age distribution retrieved from population query.
 class Age extends GenderData {
@@ -89,6 +89,6 @@ class Age extends GenderData {
       int year)
       : super(gender, planningArea, year);
 
+  /// @nodoc
   factory Age.fromJson(Map<String, dynamic> json) => _$AgeFromJson(json);
-  Map<String, dynamic> toJson() => _$AgeToJson(this);
 }

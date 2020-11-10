@@ -19,16 +19,3 @@ EducationStatus _$EducationStatusFromJson(Map<String, dynamic> json) {
     json['year'] as int,
   );
 }
-
-Map<String, dynamic> _$EducationStatusToJson(EducationStatus instance) =>
-    <String, dynamic>{
-      'planning_area': instance.planningArea,
-      'year': instance.year,
-      'pre_primary': instance.prePrimary,
-      'primary': instance.primary,
-      'secondary': instance.secondary,
-      'post_secondary': instance.postSecondary,
-      'polytechnic': instance.polytechnic,
-      'prof_qualification_diploma': instance.profQualificationDiploma,
-      'university': instance.university,
-    };

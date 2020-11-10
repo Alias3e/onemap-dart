@@ -1,2 +1,3 @@
-/// Base class for object deserialized in retrieve theme list.
+/// @nodoc
+/// Base class for object deserialize in retrieve theme list.
 abstract class ThemeResult {}

@@ -12,9 +12,3 @@ CoordinateLatLong _$CoordinateLatLongFromJson(Map<String, dynamic> json) {
     (json['longitude'] as num)?.toDouble(),
   );
 }
-
-Map<String, dynamic> _$CoordinateLatLongToJson(CoordinateLatLong instance) =>
-    <String, dynamic>{
-      'latitude': instance.latitude,
-      'longitude': instance.longitude,
-    };

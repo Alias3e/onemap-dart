@@ -20,17 +20,3 @@ HouseholdSize _$HouseholdSizeFromJson(Map<String, dynamic> json) {
     json['year'] as int,
   );
 }
-
-Map<String, dynamic> _$HouseholdSizeToJson(HouseholdSize instance) =>
-    <String, dynamic>{
-      'planning_area': instance.planningArea,
-      'year': instance.year,
-      'person1': instance.onePersonInHousehold,
-      'person2': instance.twoPersonInHousehold,
-      'person3': instance.threePersonInHousehold,
-      'person4': instance.fourPersonInHousehold,
-      'person5': instance.fivePersonInHousehold,
-      'person6': instance.sixPersonInHousehold,
-      'person7': instance.sevenPersonInHousehold,
-      'person_more_8': instance.eightOrMorePersonInHousehold,
-    };

@@ -15,11 +15,3 @@ ThemeName _$ThemeNameFromJson(Map<String, dynamic> json) {
     json['THEME_OWNER'] as String,
   );
 }
-
-Map<String, dynamic> _$ThemeNameToJson(ThemeName instance) => <String, dynamic>{
-      'THEMENAME': instance.themeName,
-      'QUERYNAME': instance.queryName,
-      'ICON': instance.icon,
-      'CATEGORY': instance.category,
-      'THEME_OWNER': instance.themeOwner,
-    };

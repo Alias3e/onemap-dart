@@ -1,9 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import 'population_data.dart';
 
 part 'spoken_languages.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Details the languages spoken retrieved from population data.
 class SpokenLanguages extends PopulationData {
@@ -35,7 +36,7 @@ class SpokenLanguages extends PopulationData {
       int year)
       : super(planningArea, year);
 
+  /// @nodoc
   factory SpokenLanguages.fromJson(Map<String, dynamic> json) =>
       _$SpokenLanguagesFromJson(json);
-  Map<String, dynamic> toJson() => _$SpokenLanguagesToJson(this);
 }

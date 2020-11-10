@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'coordinate_xy.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// X, Y coordinates in SVY21 format.
 class CoordinateXY {
@@ -13,9 +13,9 @@ class CoordinateXY {
 
   CoordinateXY(this.x, this.y);
 
+  /// @nodoc
   factory CoordinateXY.fromJson(Map<String, dynamic> json) =>
       _$CoordinateXYFromJson(json);
-  Map<String, dynamic> toJson() => _$CoordinateXYToJson(this);
 
   @override
   String toString() => '($x, $y)';

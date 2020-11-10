@@ -4,7 +4,7 @@ import 'population_data.dart';
 
 part 'household_size.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Information about the size of a household retrieved from population query.
 class HouseholdSize extends PopulationData {
@@ -45,7 +45,7 @@ class HouseholdSize extends PopulationData {
       int year)
       : super(planningArea, year);
 
+  /// @nodoc
   factory HouseholdSize.fromJson(Map<String, dynamic> json) =>
       _$HouseholdSizeFromJson(json);
-  Map<String, dynamic> toJson() => _$HouseholdSizeToJson(this);
 }

@@ -12,9 +12,3 @@ OneMapCredentials _$OneMapCredentialsFromJson(Map<String, dynamic> json) {
     JsonTypeAdapter.intFromString(json['expiry_timestamp'] as String),
   );
 }
-
-Map<String, dynamic> _$OneMapCredentialsToJson(OneMapCredentials instance) =>
-    <String, dynamic>{
-      'access_token': instance.accessToken,
-      'expiry_timestamp': JsonTypeAdapter.intToString(instance.expiryTimestamp),
-    };

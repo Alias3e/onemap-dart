@@ -3,7 +3,8 @@ import 'package:meta/meta.dart';
 
 import '../../src/models/rest_api/rest_api.dart';
 import '../missing_token_exception.dart';
-import 'apis.dart';
+import 'api.dart';
+import 'authentication.dart';
 
 /// Contains OneMap rest APIs [search], [reverseGeocodeXY] and [reverseGeocode].
 class RestApi extends Api {

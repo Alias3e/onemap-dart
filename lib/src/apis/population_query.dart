@@ -3,7 +3,8 @@ import 'package:meta/meta.dart';
 
 import '../../src/models/population_query/population_query.dart';
 import '../missing_token_exception.dart';
-import 'apis.dart';
+import 'api.dart';
+import 'authentication.dart';
 
 class PopulationQuery extends Api {
   PopulationQuery(Dio dio, Authentication authentication)

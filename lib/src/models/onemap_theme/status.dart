@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'status.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Theme updated status.
 class Status {
@@ -11,6 +11,6 @@ class Status {
 
   Status(this.updatedFile);
 
+  /// @nodoc
   factory Status.fromJson(Map<String, dynamic> json) => _$StatusFromJson(json);
-  Map<String, dynamic> toJson() => _$StatusToJson(this);
 }

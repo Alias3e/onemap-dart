@@ -24,21 +24,3 @@ Transportation _$TransportationFromJson(Map<String, dynamic> json) {
     json['year'] as int,
   );
 }
-
-Map<String, dynamic> _$TransportationToJson(Transportation instance) =>
-    <String, dynamic>{
-      'planning_area': instance.planningArea,
-      'year': instance.year,
-      'bus': instance.bus,
-      'mrt': instance.mrt,
-      'mrt_bus': instance.mrtAndBus,
-      'mrt_car': instance.mrtAndCar,
-      'mrt_other': instance.mrtAndOther,
-      'taxi': instance.taxi,
-      'car': instance.car,
-      'pvt_chartered_bus': instance.privateCharteredBus,
-      'lorry_pickup': instance.lorryOrPickup,
-      'motorcycle_scooter': instance.motorcycleOrScooter,
-      'others': instance.others,
-      'no_transport_required': instance.noTransportRequired,
-    };

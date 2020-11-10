@@ -19,16 +19,3 @@ GeocodeInfo _$GeocodeInfoFromJson(Map<String, dynamic> json) {
     JsonTypeAdapter.doubleFromString(json['LONGITUDE'] as String),
   );
 }
-
-Map<String, dynamic> _$GeocodeInfoToJson(GeocodeInfo instance) =>
-    <String, dynamic>{
-      'BUILDINGNAME': JsonTypeAdapter.emptyToNull(instance.buildingName),
-      'FEATURE_NAME': JsonTypeAdapter.emptyToNull(instance.featureName),
-      'BLOCK': JsonTypeAdapter.emptyToNull(instance.block),
-      'ROAD': JsonTypeAdapter.emptyToNull(instance.road),
-      'POSTALCODE': JsonTypeAdapter.emptyToNull(instance.postalCode),
-      'XCOORD': JsonTypeAdapter.doubleToString(instance.x),
-      'YCOORD': JsonTypeAdapter.doubleToString(instance.y),
-      'LATITUDE': JsonTypeAdapter.doubleToString(instance.latitude),
-      'LONGITUDE': JsonTypeAdapter.doubleToString(instance.longitude),
-    };

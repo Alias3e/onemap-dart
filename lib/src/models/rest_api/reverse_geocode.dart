@@ -4,7 +4,7 @@ import 'geocode_info.dart';
 
 part 'reverse_geocode.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, createToJson: false)
 
 /// [ReverseGeocode] contains a list of [GeocodeInfo] found after performing reverse geocoding.
 class ReverseGeocode {
@@ -13,7 +13,7 @@ class ReverseGeocode {
 
   ReverseGeocode(this.geocodeInfos);
 
+  /// @nodoc
   factory ReverseGeocode.fromJson(Map<String, dynamic> json) =>
       _$ReverseGeocodeFromJson(json);
-  Map<String, dynamic> toJson() => _$ReverseGeocodeToJson(this);
 }

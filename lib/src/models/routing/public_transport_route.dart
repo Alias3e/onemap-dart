@@ -4,7 +4,7 @@ import 'routing.dart';
 
 part 'public_transport_route.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, createToJson: false)
 
 /// Routing data retrieved from calling route API with public transport as the
 /// route type.
@@ -17,8 +17,7 @@ class PublicTransportRoute {
   PublicTransportRoute(this.debugOutput, this.elevationMetadata, this.plan,
       this.requestParameters);
 
+  /// @nodoc
   factory PublicTransportRoute.fromJson(Map<String, dynamic> json) =>
       _$PublicTransportRouteFromJson(json);
-
-  Map<String, dynamic> toJson() => _$PublicTransportRouteToJson(this);
 }

@@ -15,11 +15,3 @@ Tenancy _$TenancyFromJson(Map<String, dynamic> json) {
     json['year'] as int,
   );
 }
-
-Map<String, dynamic> _$TenancyToJson(Tenancy instance) => <String, dynamic>{
-      'planning_area': instance.planningArea,
-      'year': instance.year,
-      'owner': instance.owner,
-      'tenant': instance.tenant,
-      'others': instance.others,
-    };

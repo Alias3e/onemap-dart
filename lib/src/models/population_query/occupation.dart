@@ -1,9 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import 'population_data.dart';
 
 part 'occupation.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Occupation distribution retrieved from population query.
 class Occupation extends PopulationData {
@@ -50,7 +51,7 @@ class Occupation extends PopulationData {
       int year)
       : super(planningArea, year);
 
+  /// @nodoc
   factory Occupation.fromJson(Map<String, dynamic> json) =>
       _$OccupationFromJson(json);
-  Map<String, dynamic> toJson() => _$OccupationToJson(this);
 }

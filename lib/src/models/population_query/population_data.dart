@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
+/// @nodoc
 /// Base class for data retrieved from population query API.
 abstract class PopulationData {
   @JsonKey(name: 'planning_area')

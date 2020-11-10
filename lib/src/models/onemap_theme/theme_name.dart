@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'theme_name.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Contains [themeName] and [queryName] about a theme. Could contain additional
 /// information about the theme if requested.
@@ -24,7 +24,7 @@ class ThemeName {
   ThemeName(this.themeName, this.queryName, this.icon, this.category,
       this.themeOwner);
 
+  /// @nodoc
   factory ThemeName.fromJson(Map<String, dynamic> json) =>
       _$ThemeNameFromJson(json);
-  Map<String, dynamic> toJson() => _$ThemeNameToJson(this);
 }

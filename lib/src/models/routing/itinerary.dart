@@ -4,7 +4,7 @@ import 'leg.dart';
 
 part 'itinerary.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Represents a set of data detailing a possible route.
 class Itinerary {
@@ -38,9 +38,11 @@ class Itinerary {
 
   String fare;
 
+  /// Get [DateTime] object based on the [startTimeStamp].
   DateTime get startDateTime =>
       DateTime.fromMillisecondsSinceEpoch(startTimeStamp);
 
+  /// Get [DateTime] object based on the [endTimeStamp].
   DateTime get endDateTime => DateTime.fromMillisecondsSinceEpoch(endTimeStamp);
 
   Itinerary(
@@ -60,8 +62,7 @@ class Itinerary {
     this.walkTime,
   );
 
+  /// @nodoc
   factory Itinerary.fromJson(Map<String, dynamic> json) =>
       _$ItineraryFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ItineraryToJson(this);
 }

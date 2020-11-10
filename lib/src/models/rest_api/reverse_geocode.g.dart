@@ -14,8 +14,3 @@ ReverseGeocode _$ReverseGeocodeFromJson(Map<String, dynamic> json) {
         ?.toList(),
   );
 }
-
-Map<String, dynamic> _$ReverseGeocodeToJson(ReverseGeocode instance) =>
-    <String, dynamic>{
-      'GeocodeInfo': instance.geocodeInfos?.map((e) => e?.toJson())?.toList(),
-    };

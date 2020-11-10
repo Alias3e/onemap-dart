@@ -21,18 +21,3 @@ TransitVertex _$TransitVertexFromJson(Map<String, dynamic> json) {
     json['vertexType'] as String,
   );
 }
-
-Map<String, dynamic> _$TransitVertexToJson(TransitVertex instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'lon': instance.lon,
-      'lat': instance.lat,
-      'vertexType': instance.vertexType,
-      'orig': JsonTypeAdapter.emptyToNull(instance.orig),
-      'stopId': JsonTypeAdapter.emptyToNull(instance.stopId),
-      'stopCode': JsonTypeAdapter.emptyToNull(instance.stopCode),
-      'departure': instance.departureTimestamp,
-      'arrival': JsonTypeAdapter.nullToZero(instance.arrivalTimestamp),
-      'stopIndex': JsonTypeAdapter.nullToZero(instance.stopIndex),
-      'stopSequence': JsonTypeAdapter.nullToZero(instance.stopSequence),
-    };

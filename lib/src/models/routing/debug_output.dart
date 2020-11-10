@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'debug_output.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Debug output returned when calling route API with route type set to public transport.
 class DebugOutput {
@@ -21,8 +21,7 @@ class DebugOutput {
   DebugOutput(this.totalTime, this.pathCalculationTime, this.pathTimes,
       this.precalculationTime, this.renderingTime, this.timedOut);
 
+  /// @nodoc
   factory DebugOutput.fromJson(Map<String, dynamic> json) =>
       _$DebugOutputFromJson(json);
-
-  Map<String, dynamic> toJson() => _$DebugOutputToJson(this);
 }

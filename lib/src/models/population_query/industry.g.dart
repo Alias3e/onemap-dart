@@ -31,27 +31,3 @@ Industry _$IndustryFromJson(Map<String, dynamic> json) {
     json['year'] as int,
   );
 }
-
-Map<String, dynamic> _$IndustryToJson(Industry instance) => <String, dynamic>{
-      'planning_area': instance.planningArea,
-      'year': instance.year,
-      'manufacturing': instance.manufacturing,
-      'construction': instance.construction,
-      'wholesale_retail_trade': instance.wholesaleAndRetailTrade,
-      'transportation_storage': instance.transportationAndStorage,
-      'accommodation_food_services': instance.accommodationAndFoodServices,
-      'information_communications': instance.informationCommunications,
-      'financial_insurance_services': instance.financialAndInsuranceServices,
-      'real_estate_services': instance.realEstateServices,
-      'professional_services': instance.professionalServices,
-      'admin_support_services': instance.adminSupportServices,
-      'public_admin_education': instance.publicAdminEducation,
-      'health_social_services': instance.healthAndSocialServices,
-      'arts_entertainment_recreation': instance.artsEntertainmentAndRecreation,
-      'other_comm_social_personal': instance.otherCommSocialPersonal,
-      'others': instance.others,
-      'hotels_restaurants': instance.hotelsAndRestaurants,
-      'transport_communications': instance.transportCommunications,
-      'business_services': instance.businessServices,
-      'other_services_industries': instance.otherServicesIndustries,
-    };

@@ -4,7 +4,7 @@ import 'population_data.dart';
 
 part 'household_monthly_income.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Household month income retrieved from population query.
 class HouseholdMonthlyIncome extends PopulationData {
@@ -64,7 +64,7 @@ class HouseholdMonthlyIncome extends PopulationData {
       int year)
       : super(planningArea, year);
 
+  /// @nodoc
   factory HouseholdMonthlyIncome.fromJson(Map<String, dynamic> json) =>
       _$HouseholdMonthlyIncomeFromJson(json);
-  Map<String, dynamic> toJson() => _$HouseholdMonthlyIncomeToJson(this);
 }

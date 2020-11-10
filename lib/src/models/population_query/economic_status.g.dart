@@ -16,13 +16,3 @@ EconomicStatus _$EconomicStatusFromJson(Map<String, dynamic> json) {
     json['year'] as int,
   );
 }
-
-Map<String, dynamic> _$EconomicStatusToJson(EconomicStatus instance) =>
-    <String, dynamic>{
-      'planning_area': instance.planningArea,
-      'year': instance.year,
-      'gender': instance.gender,
-      'employed': instance.employed,
-      'unemployed': instance.unemployed,
-      'inactive': instance.inactive,
-    };

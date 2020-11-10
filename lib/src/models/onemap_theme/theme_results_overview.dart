@@ -4,7 +4,7 @@ import 'onemap_theme.dart';
 
 part 'theme_results_overview.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Contains overview of theme from retrieve theme API. First item in the result
 /// list.
@@ -27,7 +27,7 @@ class ThemeResultsOverview extends ThemeResult {
   ThemeResultsOverview(this.featureCount, this.themeName, this.category,
       this.owner, this.dateTime);
 
+  /// @nodoc
   factory ThemeResultsOverview.fromJson(Map<String, dynamic> json) =>
       _$ThemeResultsOverviewFromJson(json);
-  Map<String, dynamic> toJson() => _$ThemeResultsOverviewToJson(this);
 }

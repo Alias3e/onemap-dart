@@ -1,9 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import 'population_data.dart';
 
 part 'industry.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Information about the distribution of workforce industry retrieved from population query.
 class Industry extends PopulationData {
@@ -85,7 +86,7 @@ class Industry extends PopulationData {
       int year)
       : super(planningArea, year);
 
+  /// @nodoc
   factory Industry.fromJson(Map<String, dynamic> json) =>
       _$IndustryFromJson(json);
-  Map<String, dynamic> toJson() => _$IndustryToJson(this);
 }

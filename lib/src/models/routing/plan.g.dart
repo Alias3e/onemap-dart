@@ -21,10 +21,3 @@ Plan _$PlanFromJson(Map<String, dynamic> json) {
         ?.toList(),
   );
 }
-
-Map<String, dynamic> _$PlanToJson(Plan instance) => <String, dynamic>{
-      'date': instance.dateTimestamp,
-      'from': instance.from,
-      'to': instance.to,
-      'itineraries': instance.itineraries,
-    };

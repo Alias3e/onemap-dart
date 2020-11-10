@@ -15,12 +15,3 @@ PlanVertex _$PlanVertexFromJson(Map<String, dynamic> json) {
     json['vertexType'] as String,
   );
 }
-
-Map<String, dynamic> _$PlanVertexToJson(PlanVertex instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'lon': instance.lon,
-      'lat': instance.lat,
-      'vertexType': instance.vertexType,
-      'orig': JsonTypeAdapter.emptyToNull(instance.orig),
-    };

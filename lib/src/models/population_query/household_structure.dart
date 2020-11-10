@@ -4,7 +4,7 @@ import 'population_data.dart';
 
 part 'household_structure.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Family structure information retrieved from population query.
 class HouseholdStructure extends PopulationData {
@@ -41,7 +41,7 @@ class HouseholdStructure extends PopulationData {
       int year)
       : super(planningArea, year);
 
+  /// @nodoc
   factory HouseholdStructure.fromJson(Map<String, dynamic> json) =>
       _$HouseholdStructureFromJson(json);
-  Map<String, dynamic> toJson() => _$HouseholdStructureToJson(this);
 }

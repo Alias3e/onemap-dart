@@ -4,7 +4,7 @@ import 'leg.dart';
 
 part 'leg_geometry.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Data object that contains the list of points for a [Leg]. The geometry is
 /// encoded and would require decoding.
@@ -15,7 +15,7 @@ class LegGeometry {
 
   LegGeometry(this.length, this.points);
 
+  /// @nodoc
   factory LegGeometry.fromJson(Map<String, dynamic> json) =>
       _$LegGeometryFromJson(json);
-  Map<String, dynamic> toJson() => _$LegGeometryToJson(this);
 }

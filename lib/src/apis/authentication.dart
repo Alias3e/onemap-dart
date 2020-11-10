@@ -5,8 +5,10 @@ import '../models/authentication/onemap_credentials.dart';
 
 /// Provides authentication with OneMap service.
 class Authentication {
+  /// @nodoc
   final Dio _dio;
 
+  /// OneMap access token.
   String accessToken;
 
   Authentication(this._dio, {this.accessToken});

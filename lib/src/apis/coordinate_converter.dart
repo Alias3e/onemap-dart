@@ -6,6 +6,7 @@ import '../../src/models/coordinate/coordinate.dart';
 /// Provides coordinate conversion between EPSG:4326, EPSG:3857 and EPSG:3414
 /// spatial references.
 class CoordinateConverter {
+  /// @nodoc
   final Dio _dio;
 
   CoordinateConverter(this._dio);

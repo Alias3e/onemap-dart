@@ -24,12 +24,3 @@ PublicTransportRoute _$PublicTransportRouteFromJson(Map<String, dynamic> json) {
             json['requestParameters'] as Map<String, dynamic>),
   );
 }
-
-Map<String, dynamic> _$PublicTransportRouteToJson(
-        PublicTransportRoute instance) =>
-    <String, dynamic>{
-      'requestParameters': instance.requestParameters?.toJson(),
-      'plan': instance.plan?.toJson(),
-      'debugOutput': instance.debugOutput?.toJson(),
-      'elevationMetadata': instance.elevationMetadata?.toJson(),
-    };

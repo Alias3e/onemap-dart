@@ -4,7 +4,7 @@ import '../type_adapter.dart';
 
 part 'search_result.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// [SearchResult] describe each individual location found from making search API call.
 class SearchResult {
@@ -26,28 +26,16 @@ class SearchResult {
   @JsonKey(name: 'POSTAL')
   String postal;
 
-  @JsonKey(
-      name: 'X',
-      fromJson: JsonTypeAdapter.doubleFromString,
-      toJson: JsonTypeAdapter.doubleToString)
+  @JsonKey(name: 'X', fromJson: JsonTypeAdapter.doubleFromString)
   double x;
 
-  @JsonKey(
-      name: 'Y',
-      fromJson: JsonTypeAdapter.doubleFromString,
-      toJson: JsonTypeAdapter.doubleToString)
+  @JsonKey(name: 'Y', fromJson: JsonTypeAdapter.doubleFromString)
   double y;
 
-  @JsonKey(
-      name: 'LATITUDE',
-      fromJson: JsonTypeAdapter.doubleFromString,
-      toJson: JsonTypeAdapter.doubleToString)
+  @JsonKey(name: 'LATITUDE', fromJson: JsonTypeAdapter.doubleFromString)
   double latitude;
 
-  @JsonKey(
-      name: 'LONGITUDE',
-      fromJson: JsonTypeAdapter.doubleFromString,
-      toJson: JsonTypeAdapter.doubleToString)
+  @JsonKey(name: 'LONGITUDE', fromJson: JsonTypeAdapter.doubleFromString)
   double longitude;
 
   SearchResult({
@@ -63,7 +51,7 @@ class SearchResult {
     this.longitude,
   });
 
+  /// @nodoc
   factory SearchResult.fromJson(Map<String, dynamic> json) =>
       _$SearchResultFromJson(json);
-  Map<String, dynamic> toJson() => _$SearchResultToJson(this);
 }

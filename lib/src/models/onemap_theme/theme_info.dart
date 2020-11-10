@@ -4,7 +4,7 @@ import 'theme_name.dart';
 
 part 'theme_info.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Contains a [themeNames] list.
 class ThemeInfo {
@@ -13,7 +13,7 @@ class ThemeInfo {
 
   ThemeInfo(this.themeNames);
 
+  /// @nodoc
   factory ThemeInfo.fromJson(Map<String, dynamic> json) =>
       _$ThemeInfoFromJson(json);
-  Map<String, dynamic> toJson() => _$ThemeInfoToJson(this);
 }

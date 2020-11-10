@@ -19,16 +19,3 @@ SpokenLanguages _$SpokenLanguagesFromJson(Map<String, dynamic> json) {
     json['year'] as int,
   );
 }
-
-Map<String, dynamic> _$SpokenLanguagesToJson(SpokenLanguages instance) =>
-    <String, dynamic>{
-      'planning_area': instance.planningArea,
-      'year': instance.year,
-      'english': instance.english,
-      'mandarin': instance.mandarin,
-      'chinese_dialects': instance.chineseDialects,
-      'malay': instance.malay,
-      'tamil': instance.tamil,
-      'other_indian_languages': instance.otherIndianLanguages,
-      'others': instance.others,
-    };

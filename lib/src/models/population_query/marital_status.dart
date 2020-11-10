@@ -1,9 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import 'gender_data.dart';
 
 part 'marital_status.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Marital status retrieved from population query.
 class MaritalStatus extends GenderData {
@@ -16,7 +17,7 @@ class MaritalStatus extends GenderData {
       String gender, String planningArea, int year)
       : super(gender, planningArea, year);
 
+  /// @nodoc
   factory MaritalStatus.fromJson(Map<String, dynamic> json) =>
       _$MaritalStatusFromJson(json);
-  Map<String, dynamic> toJson() => _$MaritalStatusToJson(this);
 }

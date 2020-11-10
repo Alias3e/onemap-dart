@@ -5,7 +5,8 @@ import 'package:meta/meta.dart';
 
 import '../../src/models/routing/routing.dart';
 import '../missing_token_exception.dart';
-import 'apis.dart';
+import 'api.dart';
+import 'authentication.dart';
 
 /// API to find different routes between 2 points using various mode of transport.
 class Routing extends Api {

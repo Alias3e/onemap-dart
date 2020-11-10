@@ -1,9 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import 'population_data.dart';
 
 part 'transportation.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Modes of transportation.
 class Transportation extends PopulationData {
@@ -55,7 +56,7 @@ class Transportation extends PopulationData {
       int year)
       : super(planningArea, year);
 
+  /// @nodoc
   factory Transportation.fromJson(Map<String, dynamic> json) =>
       _$TransportationFromJson(json);
-  Map<String, dynamic> toJson() => _$TransportationToJson(this);
 }

@@ -20,14 +20,3 @@ Route _$RouteFromJson(Map<String, dynamic> json) {
     json['subtitle'] as String,
   );
 }
-
-Map<String, dynamic> _$RouteToJson(Route instance) => <String, dynamic>{
-      'status_message': instance.statusMessage,
-      'route_geometry': instance.encodedRouteGeometry,
-      'status': instance.status,
-      'route_instructions': instance.routeInstructions,
-      'route_name': instance.routeNames,
-      'route_summary': instance.routeSummary,
-      'viaRoute': instance.viaRoute,
-      'subtitle': instance.subtitle,
-    };

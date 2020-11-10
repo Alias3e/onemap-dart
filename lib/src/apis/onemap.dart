@@ -1,6 +1,12 @@
 import 'package:dio/dio.dart';
 
-import '../../onemapsg.dart';
+import 'authentication.dart';
+import 'coordinate_converter.dart';
+import 'planning_area_api.dart';
+import 'population_query.dart';
+import 'rest_api.dart';
+import 'routing.dart';
+import 'themes_api.dart';
 
 /// Entry point for OneMap SDK.
 class OneMap {
@@ -50,13 +56,13 @@ class OneMap {
     return _coordinateConverter;
   }
 
-  // Provides thematic information(dengue cluster, kindergartens etc) from various agencies.
+  /// Provides thematic information(dengue cluster, kindergartens etc) from various agencies.
   ThemesApi get themes {
     _themes ??= ThemesApi(_dio, _authentication);
     return _themes;
   }
 
-  // APIs to retrieve data related to the planning area of Singapore.
+  /// APIs to retrieve data related to the planning area of Singapore.
   PlanningAreaApi get planningArea {
     _planningArea ??= PlanningAreaApi(_dio, _authentication);
     return _planningArea;

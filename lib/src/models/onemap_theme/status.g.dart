@@ -11,7 +11,3 @@ Status _$StatusFromJson(Map<String, dynamic> json) {
     json['UpdatedFile'] as bool,
   );
 }
-
-Map<String, dynamic> _$StatusToJson(Status instance) => <String, dynamic>{
-      'UpdatedFile': instance.updatedFile,
-    };

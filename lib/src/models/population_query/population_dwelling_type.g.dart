@@ -22,19 +22,3 @@ PopulationDwellingType _$PopulationDwellingTypeFromJson(
     json['year'] as int,
   );
 }
-
-Map<String, dynamic> _$PopulationDwellingTypeToJson(
-        PopulationDwellingType instance) =>
-    <String, dynamic>{
-      'planning_area': instance.planningArea,
-      'year': instance.year,
-      'hdb_1_and_2_room_flats': instance.oneToTwoRoomsHDB,
-      'hdb_3_room_flats': instance.threeRoomHDB,
-      'hdb_4_room_flats': instance.fourRoomHDB,
-      'hdb_5_room_and_executive_flats': instance.fiveRoomHDBExecutive,
-      'condominiums_and_other_apartments': instance.condominiums,
-      'landed_properties': instance.landedProperties,
-      'others': instance.others,
-      'total_hdb': instance.totalHDB,
-      'total': instance.total,
-    };

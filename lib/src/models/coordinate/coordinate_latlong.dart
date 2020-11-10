@@ -3,7 +3,7 @@ import 'package:latlong/latlong.dart';
 
 part 'coordinate_latlong.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Latitude, longitude coordinates in WSG84 format.
 ///
@@ -14,10 +14,11 @@ class CoordinateLatLong {
 
   CoordinateLatLong(this.latitude, this.longitude);
 
+  /// @nodoc
   factory CoordinateLatLong.fromJson(Map<String, dynamic> json) =>
       _$CoordinateLatLongFromJson(json);
-  Map<String, dynamic> toJson() => _$CoordinateLatLongToJson(this);
 
+  /// Get [LatLng] object based on this object's [latitude] and [longitude]
   LatLng toLatLng() => LatLng(latitude, longitude);
 
   @override

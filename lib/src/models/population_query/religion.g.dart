@@ -21,17 +21,3 @@ Religion _$ReligionFromJson(Map<String, dynamic> json) {
     json['year'] as int,
   );
 }
-
-Map<String, dynamic> _$ReligionToJson(Religion instance) => <String, dynamic>{
-      'planning_area': instance.planningArea,
-      'year': instance.year,
-      'no_religion': instance.none,
-      'buddhism': instance.buddhism,
-      'taoism': instance.taoism,
-      'islam': instance.islam,
-      'hinduism': instance.hinduism,
-      'sikhism': instance.sikhism,
-      'catholic_christian': instance.catholicism,
-      'other_christians': instance.christianity,
-      'other_religions': instance.others,
-    };

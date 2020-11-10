@@ -4,11 +4,11 @@ import 'onemap_theme.dart';
 
 part 'themes.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, createToJson: false)
 
 /// Contains a list [ThemeResult] after retrieving theme.
 class Themes {
-  @JsonKey(name: 'SrchResults', fromJson: _fromJson, toJson: _toJson)
+  @JsonKey(name: 'SrchResults', fromJson: _fromJson)
   List<ThemeResult> results;
 
   Themes(this.results);
@@ -25,17 +25,6 @@ class Themes {
     return results;
   }
 
-  static List<dynamic> _toJson(List<ThemeResult> results) {
-    List<dynamic> output = [];
-    for (int i = 0; i < results.length; i++) {
-      if (i == 0)
-        output.add((results[i] as ThemeResultsOverview).toJson());
-      else
-        output.add((results[i] as ThemeResultsItem).toJson());
-    }
-    return output;
-  }
-
+  /// @nodoc
   factory Themes.fromJson(Map<String, dynamic> json) => _$ThemesFromJson(json);
-  Map<String, dynamic> toJson() => _$ThemesToJson(this);
 }

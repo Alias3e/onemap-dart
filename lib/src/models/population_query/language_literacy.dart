@@ -1,9 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import 'population_data.dart';
 
 part 'language_literacy.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Language literacy data retrieved from population query.
 class LanguageLiteracy extends PopulationData {
@@ -68,7 +69,7 @@ class LanguageLiteracy extends PopulationData {
       int year)
       : super(planningArea, year);
 
+  /// @nodoc
   factory LanguageLiteracy.fromJson(Map<String, dynamic> json) =>
       _$LanguageLiteracyFromJson(json);
-  Map<String, dynamic> toJson() => _$LanguageLiteracyToJson(this);
 }

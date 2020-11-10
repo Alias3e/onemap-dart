@@ -16,13 +16,3 @@ ThemeResultsItem _$ThemeResultsItemFromJson(Map<String, dynamic> json) {
     json['ICON_NAME'] as String,
   );
 }
-
-Map<String, dynamic> _$ThemeResultsItemToJson(ThemeResultsItem instance) =>
-    <String, dynamic>{
-      'NAME': instance.name,
-      'DESCRIPTION': instance.description,
-      'ADDRESSPOSTALCODE': instance.postalCode,
-      'ADDRESSSTREETNAME': instance.address,
-      'LatLng': instance.latLongString,
-      'ICON_NAME': instance.iconName,
-    };

@@ -12,9 +12,3 @@ CoordinateXY _$CoordinateXYFromJson(Map<String, dynamic> json) {
     (json['Y'] as num)?.toDouble(),
   );
 }
-
-Map<String, dynamic> _$CoordinateXYToJson(CoordinateXY instance) =>
-    <String, dynamic>{
-      'X': instance.x,
-      'Y': instance.y,
-    };

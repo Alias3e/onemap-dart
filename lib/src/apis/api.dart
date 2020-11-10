@@ -3,6 +3,7 @@ import 'package:meta/meta.dart';
 
 import 'authentication.dart';
 
+/// @nodoc
 abstract class Api {
   @protected
   final Dio dio;

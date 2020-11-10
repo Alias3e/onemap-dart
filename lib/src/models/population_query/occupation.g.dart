@@ -22,19 +22,3 @@ Occupation _$OccupationFromJson(Map<String, dynamic> json) {
     json['year'] as int,
   );
 }
-
-Map<String, dynamic> _$OccupationToJson(Occupation instance) =>
-    <String, dynamic>{
-      'planning_area': instance.planningArea,
-      'year': instance.year,
-      'senior_officials_managers': instance.seniorOfficialsManagers,
-      'professionals': instance.professionals,
-      'associate_professionals_tech': instance.associateProfessionalsTech,
-      'clerical': instance.clerical,
-      'service_sales': instance.serviceSales,
-      'agricultural_fishery': instance.agriculturalFishery,
-      'production_craftsmen': instance.productionCraftsmen,
-      'plant_machine_operators': instance.plantMachineOperators,
-      'cleaners_labourers': instance.cleanersLabourers,
-      'workers_not_classified': instance.unclassified,
-    };

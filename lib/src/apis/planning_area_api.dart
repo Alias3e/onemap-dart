@@ -3,7 +3,8 @@ import 'package:meta/meta.dart';
 
 import '../../src/models/planning_area_api/planning_area.dart';
 import '../missing_token_exception.dart';
-import 'apis.dart';
+import 'api.dart';
+import 'authentication.dart';
 
 /// APIs that provide data related to the planning area of Singapore.
 class PlanningAreaApi extends Api {

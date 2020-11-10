@@ -5,7 +5,7 @@ import 'theme_result.dart';
 
 part 'theme_results_item.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Describe each individual item of a theme including geolocation information.
 class ThemeResultsItem extends ThemeResult {
@@ -35,7 +35,7 @@ class ThemeResultsItem extends ThemeResult {
   ThemeResultsItem(this.name, this.description, this.postalCode, this.address,
       this.latLongString, this.iconName);
 
+  /// @nodoc
   factory ThemeResultsItem.fromJson(Map<String, dynamic> json) =>
       _$ThemeResultsItemFromJson(json);
-  Map<String, dynamic> toJson() => _$ThemeResultsItemToJson(this);
 }

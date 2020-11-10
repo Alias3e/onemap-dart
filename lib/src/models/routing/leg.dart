@@ -6,7 +6,7 @@ import 'routing.dart';
 
 part 'leg.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, createToJson: false)
 
 /// A [Leg] is one segment of a route.
 class Leg with GeometryDecoder {
@@ -16,9 +16,11 @@ class Leg with GeometryDecoder {
   @JsonKey(name: 'endTime')
   int endTimestamp;
 
+  /// Get [DateTime] object based on [startTimestamp].
   DateTime get startDateTime =>
       DateTime.fromMillisecondsSinceEpoch(startTimestamp);
 
+  /// Get [DateTime] object based on [endTimestamp].
   DateTime get endDateTime => DateTime.fromMillisecondsSinceEpoch(endTimestamp);
 
   int departureDelay;
@@ -35,43 +37,29 @@ class Leg with GeometryDecoder {
 
   String route;
 
-  @JsonKey(
-      fromJson: JsonTypeAdapter.emptyFromNull,
-      toJson: JsonTypeAdapter.emptyToNull)
+  @JsonKey(fromJson: JsonTypeAdapter.emptyFromNull)
   String agencyName;
 
-  @JsonKey(
-      fromJson: JsonTypeAdapter.emptyFromNull,
-      toJson: JsonTypeAdapter.emptyToNull)
+  @JsonKey(fromJson: JsonTypeAdapter.emptyFromNull)
   String agencyUrl;
 
   int agencyTimeZoneOffset;
 
-  @JsonKey(
-      fromJson: JsonTypeAdapter.zeroFromNull,
-      toJson: JsonTypeAdapter.nullToZero)
+  @JsonKey(fromJson: JsonTypeAdapter.zeroFromNull)
   int routeType;
 
-  @JsonKey(
-      fromJson: JsonTypeAdapter.emptyFromNull,
-      toJson: JsonTypeAdapter.emptyToNull)
+  @JsonKey(fromJson: JsonTypeAdapter.emptyFromNull)
   String routeId;
 
   bool interlineWithPreviousLeg;
 
-  @JsonKey(
-      fromJson: JsonTypeAdapter.emptyFromNull,
-      toJson: JsonTypeAdapter.emptyToNull)
+  @JsonKey(fromJson: JsonTypeAdapter.emptyFromNull)
   String agencyId;
 
-  @JsonKey(
-      fromJson: JsonTypeAdapter.emptyFromNull,
-      toJson: JsonTypeAdapter.emptyToNull)
+  @JsonKey(fromJson: JsonTypeAdapter.emptyFromNull)
   String tripId;
 
-  @JsonKey(
-      fromJson: JsonTypeAdapter.emptyFromNull,
-      toJson: JsonTypeAdapter.emptyToNull)
+  @JsonKey(fromJson: JsonTypeAdapter.emptyFromNull)
   String serviceDate;
 
   TransitVertex from;
@@ -81,18 +69,16 @@ class Leg with GeometryDecoder {
   @JsonKey(name: 'legGeometry')
   LegGeometry encodedLegGeometry;
 
+  /// Decoded geometry for this lag. For more information, refer to [GeometryDecoder]
+  /// class.
   List<LatLng> get legGeometry => decode(
       isPublicTransport: mode != 'WALK',
       encodedString: encodedLegGeometry.points);
 
-  @JsonKey(
-      fromJson: JsonTypeAdapter.emptyFromNull,
-      toJson: JsonTypeAdapter.emptyToNull)
+  @JsonKey(fromJson: JsonTypeAdapter.emptyFromNull)
   String routeShortName;
 
-  @JsonKey(
-      fromJson: JsonTypeAdapter.emptyFromNull,
-      toJson: JsonTypeAdapter.emptyToNull)
+  @JsonKey(fromJson: JsonTypeAdapter.emptyFromNull)
   String routeLongName;
 
   bool rentedBike;
@@ -138,7 +124,6 @@ class Leg with GeometryDecoder {
       this.transitLeg,
       this.tripId);
 
+  /// @nodoc
   factory Leg.fromJson(Map<String, dynamic> json) => _$LegFromJson(json);
-
-  Map<String, dynamic> toJson() => _$LegToJson(this);
 }

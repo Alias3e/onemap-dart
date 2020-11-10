@@ -4,7 +4,7 @@ import 'household_dwelling_type.dart';
 
 part 'population_dwelling_type.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Data of population dwelling retrieved from population query.
 class PopulationDwellingType extends HouseholdDwellingType {
@@ -34,7 +34,7 @@ class PopulationDwellingType extends HouseholdDwellingType {
             planningArea,
             year);
 
+  /// @nodoc
   factory PopulationDwellingType.fromJson(Map<String, dynamic> json) =>
       _$PopulationDwellingTypeFromJson(json);
-  Map<String, dynamic> toJson() => _$PopulationDwellingTypeToJson(this);
 }

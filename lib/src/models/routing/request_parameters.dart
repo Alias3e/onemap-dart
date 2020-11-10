@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'request_parameters.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Request parameters that server returns as part of public transport route response.
 class RequestParameters {
@@ -53,7 +53,7 @@ class RequestParameters {
       this.waitAtBeginningFactor,
       this.walkReluctance);
 
+  /// @nodoc
   factory RequestParameters.fromJson(Map<String, dynamic> json) =>
       _$RequestParametersFromJson(json);
-  Map<String, dynamic> toJson() => _$RequestParametersToJson(this);
 }

@@ -17,10 +17,3 @@ Search _$SearchFromJson(Map<String, dynamic> json) {
         ?.toList(),
   );
 }
-
-Map<String, dynamic> _$SearchToJson(Search instance) => <String, dynamic>{
-      'found': instance.found,
-      'totalNumPages': instance.totalNumPages,
-      'pageNum': instance.pageNum,
-      'results': instance.results?.map((e) => e?.toJson())?.toList(),
-    };

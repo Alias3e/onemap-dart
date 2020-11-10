@@ -4,7 +4,7 @@ import 'population_data.dart';
 
 part 'education_status.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Describe the education status data retrieved from population query.
 class EducationStatus extends PopulationData {
@@ -37,7 +37,7 @@ class EducationStatus extends PopulationData {
       int year)
       : super(planningArea, year);
 
+  /// @nodoc
   factory EducationStatus.fromJson(Map<String, dynamic> json) =>
       _$EducationStatusFromJson(json);
-  Map<String, dynamic> toJson() => _$EducationStatusToJson(this);
 }

@@ -16,13 +16,3 @@ DebugOutput _$DebugOutputFromJson(Map<String, dynamic> json) {
     json['timedOut'] as bool,
   );
 }
-
-Map<String, dynamic> _$DebugOutputToJson(DebugOutput instance) =>
-    <String, dynamic>{
-      'precalculationTime': instance.precalculationTime,
-      'pathCalculationTime': instance.pathCalculationTime,
-      'pathTimes': instance.pathTimes,
-      'renderingTime': instance.renderingTime,
-      'totalTime': instance.totalTime,
-      'timedOut': instance.timedOut,
-    };

@@ -14,7 +14,3 @@ ThemeInfo _$ThemeInfoFromJson(Map<String, dynamic> json) {
         ?.toList(),
   );
 }
-
-Map<String, dynamic> _$ThemeInfoToJson(ThemeInfo instance) => <String, dynamic>{
-      'Theme_Names': instance.themeNames,
-    };

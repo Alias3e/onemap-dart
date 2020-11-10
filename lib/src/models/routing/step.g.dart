@@ -20,16 +20,3 @@ Step _$StepFromJson(Map<String, dynamic> json) {
     json['streetName'] as String,
   );
 }
-
-Map<String, dynamic> _$StepToJson(Step instance) => <String, dynamic>{
-      'distance': instance.distance,
-      'relativeDirection': instance.relativeDirection,
-      'streetName': instance.streetName,
-      'absoluteDirection': instance.absoluteDirection,
-      'stayOn': instance.stayOn,
-      'area': instance.area,
-      'bogusName': instance.bogusName,
-      'lon': instance.lon,
-      'lat': instance.lat,
-      'elevation': instance.elevation,
-    };

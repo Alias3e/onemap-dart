@@ -4,7 +4,7 @@ import 'search_result.dart';
 
 part 'search.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, createToJson: false)
 
 /// [Search] contains a list of [SearchResult] each representing a location found.
 class Search {
@@ -15,6 +15,6 @@ class Search {
 
   Search(this.found, this.totalNumPages, this.pageNum, this.results);
 
+  /// @nodoc
   factory Search.fromJson(Map<String, dynamic> json) => _$SearchFromJson(json);
-  Map<String, dynamic> toJson() => _$SearchToJson(this);
 }

@@ -4,7 +4,7 @@ import 'gender_data.dart';
 
 part 'ethnic_distribution.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 
 /// Describe the ethnic distribution retrieved from population query.
 class EthnicDistribution extends GenderData {
@@ -20,7 +20,7 @@ class EthnicDistribution extends GenderData {
       String gender, String planningArea, int year)
       : super(gender, planningArea, year);
 
+  /// @nodoc
   factory EthnicDistribution.fromJson(Map<String, dynamic> json) =>
       _$EthnicDistributionFromJson(json);
-  Map<String, dynamic> toJson() => _$EthnicDistributionToJson(this);
 }

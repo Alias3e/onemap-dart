@@ -12,9 +12,3 @@ PlanningArea _$PlanningAreaFromJson(Map<String, dynamic> json) {
     JsonTypeAdapter.emptyFromNull(json['geojson']),
   );
 }
-
-Map<String, dynamic> _$PlanningAreaToJson(PlanningArea instance) =>
-    <String, dynamic>{
-      'pln_area_n': instance.planningAreaName,
-      'geojson': JsonTypeAdapter.emptyToNull(instance.geoJsonString),
-    };

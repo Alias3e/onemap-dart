@@ -25,23 +25,3 @@ RequestParameters _$RequestParametersFromJson(Map<String, dynamic> json) {
     json['walkReluctance'] as String,
   );
 }
-
-Map<String, dynamic> _$RequestParametersToJson(RequestParameters instance) =>
-    <String, dynamic>{
-      'date': instance.date,
-      'preferredRoutes': instance.preferredRoutes,
-      'walkReluctance': instance.walkReluctance,
-      'fromPlace': instance.fromPlace,
-      'transferPenalty': instance.transferPenalty,
-      'maxWalkDistance': instance.maxWalkDistance,
-      'maxTransfers': instance.maxTransfers,
-      'otherThanPreferredRoutesPenalty':
-          instance.otherThanPreferredRoutesPenalty,
-      'numItineraries': instance.numItineraries,
-      'waitAtBeginningFactor': instance.waitAtBeginningFactor,
-      'mode': instance.mode,
-      'arriveBy': instance.arriveBy,
-      'showIntermediateStops': instance.showIntermediateStops,
-      'toPlace': instance.toPlace,
-      'time': instance.time,
-    };

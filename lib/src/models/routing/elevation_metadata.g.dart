@@ -12,9 +12,3 @@ ElevationMetadata _$ElevationMetadataFromJson(Map<String, dynamic> json) {
     json['geoidElevation'] as bool,
   );
 }
-
-Map<String, dynamic> _$ElevationMetadataToJson(ElevationMetadata instance) =>
-    <String, dynamic>{
-      'ellipsoidToGeoidDifference': instance.ellipsoidToGeoidDifference,
-      'geoidElevation': instance.geoidElevation,
-    };

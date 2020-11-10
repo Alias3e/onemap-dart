@@ -26,20 +26,3 @@ Itinerary _$ItineraryFromJson(Map<String, dynamic> json) {
     json['walkTime'] as int,
   );
 }
-
-Map<String, dynamic> _$ItineraryToJson(Itinerary instance) => <String, dynamic>{
-      'duration': instance.duration,
-      'startTime': instance.startTimeStamp,
-      'endTime': instance.endTimeStamp,
-      'walkTime': instance.walkTime,
-      'transitTime': instance.transitTime,
-      'waitingTime': instance.waitingTime,
-      'walkDistance': instance.walkDistance,
-      'walkLimitExceeded': instance.walkLimitExceeded,
-      'elevationLost': instance.elevationLost,
-      'elevationGained': instance.elevationGained,
-      'transfers': instance.transfers,
-      'legs': instance.legs,
-      'tooSloped': instance.tooSloped,
-      'fare': instance.fare,
-    };

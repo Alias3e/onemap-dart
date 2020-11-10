@@ -13,10 +13,3 @@ OneMapDateTime _$OneMapDateTimeFromJson(Map<String, dynamic> json) {
     json['timezone_type'] as int,
   );
 }
-
-Map<String, dynamic> _$OneMapDateTimeToJson(OneMapDateTime instance) =>
-    <String, dynamic>{
-      'date': instance.dateString,
-      'timezone_type': instance.timezoneType,
-      'timezone': instance.timezone,
-    };

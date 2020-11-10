@@ -4,7 +4,8 @@ import 'package:meta/meta.dart';
 
 import '../../src/models/onemap_theme/onemap_theme.dart';
 import '../missing_token_exception.dart';
-import 'apis.dart';
+import 'api.dart';
+import 'authentication.dart';
 
 /// SDK to retrieve a compilation of thematic information from various agencies.
 class ThemesApi extends Api {
