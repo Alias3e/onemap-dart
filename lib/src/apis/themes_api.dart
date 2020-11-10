@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:meta/meta.dart';
 
 import '../../src/models/onemap_theme/onemap_theme.dart';
-import '../missing_token_exception.dart';
+import '../exceptions/missing_token_exception.dart';
 import 'api.dart';
 import 'authentication.dart';
 

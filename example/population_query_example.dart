@@ -3,7 +3,8 @@ import 'package:onemapsg/onemapsg.dart';
 main() async {
   String token =
       'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjUyNzgsInVzZXJfaWQiOjUyNzgsImVtYWlsIjoiYm9yaW5nLmFwcHMuc2dAZ21haWwuY29tIiwiZm9yZXZlciI6ZmFsc2UsImlzcyI6Imh0dHA6XC9cL29tMi5kZmUub25lbWFwLnNnXC9hcGlcL3YyXC91c2VyXC9zZXNzaW9uIiwiaWF0IjoxNjA0NTU5NjEwLCJleHAiOjE2MDQ5OTE2MTAsIm5iZiI6MTYwNDU1OTYxMCwianRpIjoiY2Y5MzZhYWE5YjExYThjMTQ2ODI1MTJlYTU3ZDkwZDcifQ.USyyrjxY-ypmPo06yfIG037Jpe5O2FUbSHbnyVvwCZc';
-  OneMap oneMap = OneMap(accessToken: token);
+  OneMap.initialize(accessToken: token);
+  OneMap oneMap = OneMap.instance;
   // Authenticate and retrieve token
 //  try {
 //    OneMapCredentials credentials =

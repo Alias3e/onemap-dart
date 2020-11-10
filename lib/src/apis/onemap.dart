@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:onemapsg/onemapsg.dart';
 
 import 'authentication.dart';
 import 'coordinate_converter.dart';
@@ -13,13 +14,9 @@ class OneMap {
   /// [Dio] client to help make HTTP requests.
   Dio _dio;
 
-  /// [connectTimeout] in milliseconds for creating a connection to OneMap service.
-  /// Defaults to 5000 and 0 means no limit for timeout.
-  int connectTimeout = 5000;
-
-  /// [receiveTimeout] in milliseconds for receiving data from OneMap service.
-  /// Defaults to 5000 and 0 means no limit for timeout.
-  int receiveTimeout = 5000;
+  static BaseOptions _options;
+  static String _cacheToken;
+  static OneMap _instance = OneMap._internal();
 
   Authentication _authentication;
   RestApi _restApi;
@@ -29,17 +26,41 @@ class OneMap {
   PopulationQuery _populationQuery;
   Routing _routing;
 
-  OneMap({this.connectTimeout, this.receiveTimeout, String accessToken}) {
-    BaseOptions options = BaseOptions(
+  /// @nodoc
+  /// Private constructor for Singleton pattern.
+  OneMap._internal() {
+    _dio = Dio(_options);
+    _authentication = Authentication(_dio,
+        accessToken: _cacheToken == null ? '' : _cacheToken);
+  }
+
+  /// Singleton instance of this class.
+  static get instance {
+    if (_options == null) throw OneMapNotInitializedException();
+    return _instance;
+  }
+
+  /// Initialize [OneMap] object which allows access all API functions. This
+  /// method needs to be called before accessing the [instance] of this class
+  /// otherwise [OneMapNotInitializedException] will be thrown.
+  ///
+  /// * [connectTimeout] in milliseconds for creating a connection to OneMap service.
+  /// Defaults value is 5000, 0 means no limit for timeout.
+  /// * [receiveTimeout] in milliseconds for receiving data from OneMap service.
+  /// Defaults value is 5000, 0 means no limit for timeout.
+  /// * Optionally supply a previously cached [accessToken].
+  static void initialize(
+      {int connectTimeout = 5000,
+      int receiveTimeout = 5000,
+      String accessToken}) {
+    _options = BaseOptions(
         connectTimeout: connectTimeout,
         receiveTimeout: receiveTimeout,
         baseUrl: 'https://developers.onemap.sg');
-    _dio = Dio(options);
-    _authentication = Authentication(_dio,
-        accessToken: accessToken == null ? '' : accessToken);
+    _cacheToken = accessToken;
   }
 
-  /// OneMap [Authentication] APIs.
+  /// OneMap [Authentication] API.
   Authentication get authentication {
     return _authentication;
   }

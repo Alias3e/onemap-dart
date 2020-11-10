@@ -1,16 +1,17 @@
 import 'package:dio/dio.dart';
 import 'package:latlong/latlong.dart';
 import 'package:onemapsg/onemapsg.dart';
-import 'package:onemapsg/src/missing_token_exception.dart';
 
 String token =
     'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjUyNzgsInVzZXJfaWQiOjUyNzgsImVtYWlsIjoiYm9yaW5nLmFwcHMuc2dAZ21haWwuY29tIiwiZm9yZXZlciI6ZmFsc2UsImlzcyI6Imh0dHA6XC9cL29tMi5kZmUub25lbWFwLnNnXC9hcGlcL3YyXC91c2VyXC9zZXNzaW9uIiwiaWF0IjoxNjA0NTU5NjEwLCJleHAiOjE2MDQ5OTE2MTAsIm5iZiI6MTYwNDU1OTYxMCwianRpIjoiY2Y5MzZhYWE5YjExYThjMTQ2ODI1MTJlYTU3ZDkwZDcifQ.USyyrjxY-ypmPo06yfIG037Jpe5O2FUbSHbnyVvwCZc';
 OneMap oneMap;
 
 Future<void> main() async {
-  oneMap = OneMap(accessToken: token);
-  // Authenticate and retrieve token
+  OneMap.initialize(accessToken: token);
+  // Get singleton instance.
+  oneMap = OneMap.instance;
 
+  // Authenticate and retrieve token
   if (oneMap.authentication.accessToken.isEmpty) {
     try {
       OneMapCredentials credentials =

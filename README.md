@@ -2,12 +2,15 @@
 
 [OneMap](https://www.onemap.sg/home/) is the authoritative national map of Singapore with the most detailed and timely updated information developed by the Singapore Land Authority. There are also many useful day-to-day information and services contributed by government agencies.
 
-## Authentication
-An authentication example.
+## Simple example
+An example with authentication.
 
 ```dart
-// Instantiate a new OneMap object, pass in cached accessToken if available.
-OneMap oneMap = OneMap(accessToken: token);
+// Initialize a new OneMap object, pass in cached accessToken if available.
+OneMap.initialize(accessToken: token);
+
+// Get singleton instance.
+oneMap = OneMap.instance;
 
 // Authenticate and get access token.
 try {

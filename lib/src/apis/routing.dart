@@ -4,7 +4,7 @@ import 'package:latlong/latlong.dart';
 import 'package:meta/meta.dart';
 
 import '../../src/models/routing/routing.dart';
-import '../missing_token_exception.dart';
+import '../exceptions/missing_token_exception.dart';
 import 'api.dart';
 import 'authentication.dart';
 

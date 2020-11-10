@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 
 import '../../src/models/population_query/population_query.dart';
-import '../missing_token_exception.dart';
+import '../exceptions/missing_token_exception.dart';
 import 'api.dart';
 import 'authentication.dart';
 
