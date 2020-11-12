@@ -9,6 +9,8 @@ import 'authentication.dart';
 
 /// SDK to retrieve a compilation of thematic information from various agencies.
 class ThemesApi extends Api {
+  /// Construct object with [Dio] http client and [Authentication] object which
+  /// contains OneMap access token.
   ThemesApi(Dio dio, Authentication authentication)
       : super(dio, authentication);
 

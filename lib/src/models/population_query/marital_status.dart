@@ -4,13 +4,19 @@ import 'gender_data.dart';
 
 part 'marital_status.g.dart';
 
-@JsonSerializable(createToJson: false)
-
 /// Marital status retrieved from population query.
+@JsonSerializable(createToJson: false)
 class MaritalStatus extends GenderData {
+  /// Number of people who are single.
   int single;
+
+  /// Number of people who are married.
   int married;
+
+  /// Number of people who are widowed.
   int widowed;
+
+  /// Number of people who are divorced.
   int divorced;
 
   MaritalStatus(this.single, this.married, this.widowed, this.divorced,

@@ -8,6 +8,8 @@ import 'authentication.dart';
 
 /// Contains OneMap rest APIs [search], [reverseGeocodeXY] and [reverseGeocode].
 class RestApi extends Api {
+  /// Construct object with [Dio] http client and [Authentication] object which
+  /// contains OneMap access token.
   RestApi(Dio dio, Authentication authentication) : super(dio, authentication);
 
   /// Search address data for a given search value. (https://docs.onemap.sg/#search)

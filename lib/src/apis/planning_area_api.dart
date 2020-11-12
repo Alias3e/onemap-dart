@@ -8,6 +8,8 @@ import 'authentication.dart';
 
 /// APIs that provide data related to the planning area of Singapore.
 class PlanningAreaApi extends Api {
+  /// Construct object with [Dio] http client and [Authentication] object which
+  /// contains OneMap access token.
   PlanningAreaApi(Dio dio, Authentication authentication)
       : super(dio, authentication);
 

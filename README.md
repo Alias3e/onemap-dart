@@ -1,4 +1,4 @@
-# OneMap Plugin for Dart
+# OneMap Plugin for Flutter
 
 [OneMap](https://www.onemap.sg/home/) is the authoritative national map of Singapore with the most detailed and timely updated information developed by the Singapore Land Authority. There are also many useful day-to-day information and services contributed by government agencies.
 

@@ -3,13 +3,15 @@ import 'package:latlong/latlong.dart';
 
 part 'coordinate_latlong.g.dart';
 
-@JsonSerializable(createToJson: false)
-
 /// Latitude, longitude coordinates in WSG84 format.
 ///
 /// Helper method provides [LatLng] object which is commonly used in dart.
+@JsonSerializable(createToJson: false)
 class CoordinateLatLong {
+  /// Latitude of coordinate.
   double latitude;
+
+  /// Longitude of coordinate.
   double longitude;
 
   CoordinateLatLong(this.latitude, this.longitude);

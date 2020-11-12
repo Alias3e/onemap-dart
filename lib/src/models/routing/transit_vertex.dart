@@ -6,20 +6,23 @@ import 'vertex.dart';
 
 part 'transit_vertex.g.dart';
 
-@JsonSerializable(createToJson: false)
-
 /// A [Vertex] that describes a point in a route that is in transit to indicate
 /// a point in a [Leg], as such is not the end point or the start point of a journey.
+@JsonSerializable(createToJson: false)
 class TransitVertex extends PlanVertex {
+  ///  MRT or bus stop id.
   @JsonKey(fromJson: JsonTypeAdapter.emptyFromNull)
   String stopId;
 
+  ///  MRT or bus stop code.
   @JsonKey(fromJson: JsonTypeAdapter.emptyFromNull)
   String stopCode;
 
+  /// Departure timestamp in millseconds.
   @JsonKey(name: 'departure')
   int departureTimestamp;
 
+  /// Arrival timestamp in milliseconds.
   @JsonKey(name: 'arrival', fromJson: JsonTypeAdapter.zeroFromNull)
   int arrivalTimestamp;
 

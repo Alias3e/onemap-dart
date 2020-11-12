@@ -4,10 +4,10 @@ import 'household_dwelling_type.dart';
 
 part 'population_dwelling_type.g.dart';
 
-@JsonSerializable(createToJson: false)
-
 /// Data of population dwelling retrieved from population query.
+@JsonSerializable(createToJson: false)
 class PopulationDwellingType extends HouseholdDwellingType {
+  /// Total number.
   int total;
 
   PopulationDwellingType(

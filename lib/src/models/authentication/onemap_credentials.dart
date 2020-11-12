@@ -4,9 +4,8 @@ import '../type_adapter.dart';
 
 part 'onemap_credentials.g.dart';
 
-@JsonSerializable(createToJson: false)
-
 /// Access token and token expiry after authentication.
+@JsonSerializable(createToJson: false)
 class OneMapCredentials {
   @JsonKey(name: 'access_token')
 

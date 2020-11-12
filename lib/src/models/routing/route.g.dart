@@ -18,5 +18,12 @@ Route _$RouteFromJson(Map<String, dynamic> json) {
         : RouteSummary.fromJson(json['route_summary'] as Map<String, dynamic>),
     json['viaRoute'] as String,
     json['subtitle'] as String,
-  );
+  )
+    ..alternativeRoutes = (json['alternativeroute'] as List)
+        ?.map(
+            (e) => e == null ? null : Route.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..phyRoute = json['phyroute'] == null
+        ? null
+        : Route.fromJson(json['phyroute'] as Map<String, dynamic>);
 }

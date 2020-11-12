@@ -185,8 +185,8 @@ void routingExample() async {
   try {
     Route route = await oneMap.routing.getRoute(
       start: LatLng(1.319728, 103.8421),
-      end: LatLng(1.319728905, 103.8421581),
-      routeType: RouteType.walk,
+      end: LatLng(1.319728905, 103.8859),
+      routeType: RouteType.drive,
     );
 
     print(route.subtitle);
@@ -202,8 +202,8 @@ void routingExample() async {
   try {
     Route route = await oneMap.routing.getRoute(
       start: LatLng(1.319728, 103.8421),
-      end: LatLng(1.315728905, 103.8121581),
-      routeType: RouteType.drive,
+      end: LatLng(1.326762, 103.8121581),
+      routeType: RouteType.walk,
     );
 
     print(route.subtitle);
@@ -237,7 +237,7 @@ void routingExample() async {
   try {
     PublicTransportRoute ptRoute = await oneMap.routing.getPublicTransportRoute(
         start: LatLng(1.320981, 103.844150),
-        end: LatLng(1.326762, 103.8559),
+        end: LatLng(1.326762, 103.8859),
         dateTime: DateTime.now(),
         mode: Mode.TRANSIT);
 

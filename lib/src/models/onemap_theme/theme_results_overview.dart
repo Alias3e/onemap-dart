@@ -10,15 +10,23 @@ part 'theme_results_overview.g.dart';
 /// list.
 class ThemeResultsOverview extends ThemeResult {
   @JsonKey(name: 'FeatCount')
+
+  /// Number of results.
   int featureCount;
 
   @JsonKey(name: 'Theme_Name')
+
+  /// Name of theme.
   String themeName;
 
   @JsonKey(name: 'Category')
+
+  /// Category of theme
   String category;
 
   @JsonKey(name: 'Owner')
+
+  /// The organization which provided this theme information.
   String owner;
 
   @JsonKey(name: 'DateTime')

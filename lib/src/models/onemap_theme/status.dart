@@ -2,10 +2,10 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'status.g.dart';
 
-@JsonSerializable(createToJson: false)
-
 /// Theme updated status.
+@JsonSerializable(createToJson: false)
 class Status {
+  /// If the theme is updated.
   @JsonKey(name: 'UpdatedFile')
   bool updatedFile;
 

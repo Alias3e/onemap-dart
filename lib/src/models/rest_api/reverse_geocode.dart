@@ -4,10 +4,10 @@ import 'geocode_info.dart';
 
 part 'reverse_geocode.g.dart';
 
-@JsonSerializable(explicitToJson: true, createToJson: false)
-
 /// [ReverseGeocode] contains a list of [GeocodeInfo] found after performing reverse geocoding.
+@JsonSerializable(explicitToJson: true, createToJson: false)
 class ReverseGeocode {
+  /// List of [GeocodeInfo] result from performing reverse geocoding.
   @JsonKey(name: 'GeocodeInfo')
   List<GeocodeInfo> geocodeInfos;
 

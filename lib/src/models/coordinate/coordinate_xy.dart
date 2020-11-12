@@ -2,15 +2,16 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'coordinate_xy.g.dart';
 
-@JsonSerializable(createToJson: false)
-
 /// X, Y coordinates in SVY21 format.
+@JsonSerializable(createToJson: false)
 class CoordinateXY {
+  /// X coordinate.
   @JsonKey(name: 'X')
   double x;
+
+  /// Y coordinate.
   @JsonKey(name: 'Y')
   double y;
-
   CoordinateXY(this.x, this.y);
 
   /// @nodoc

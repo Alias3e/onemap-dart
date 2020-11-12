@@ -4,24 +4,30 @@ import 'population_data.dart';
 
 part 'spoken_languages.g.dart';
 
-@JsonSerializable(createToJson: false)
-
 /// Details the languages spoken retrieved from population data.
+@JsonSerializable(createToJson: false)
 class SpokenLanguages extends PopulationData {
+  /// Number of peole who can speak english.
   int english;
 
+  /// Number of people who can speak mandarin.
   int mandarin;
 
+  /// Number of people who can speak chinese dialect.
   @JsonKey(name: 'chinese_dialects')
   int chineseDialects;
 
+  /// Number of people who can speak malay.
   int malay;
 
+  /// Number of people who can speak tamil.
   int tamil;
 
+  /// Number of people who can speak other indian languages.
   @JsonKey(name: 'other_indian_languages')
   int otherIndianLanguages;
 
+  /// Number of people who can speak other languages.
   int others;
 
   SpokenLanguages(

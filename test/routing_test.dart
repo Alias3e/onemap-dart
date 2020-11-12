@@ -54,6 +54,269 @@ main() {
       expect(route.subtitle, 'Shortest distance');
     });
 
+    test('driving route deserialize correctly', () {
+      Map<String, dynamic> response = json.decode('{'
+          r'"status_message": "Found route between points",'
+          r'"route_geometry": "routegeometrymain",'
+          r'"status": 0,'
+          r'"route_instructions": ['
+          r'['
+          r'"Head",'
+          r'"SINARAN DRIVE",'
+          r'56,'
+          r'"1.320394,103.844478",'
+          r'18,'
+          r'"56m",'
+          r'"North East",'
+          r'"North",'
+          r'"driving",'
+          r'"Head Northeast On Sinaran Drive"'
+          r'],'
+          r'['
+          r'"Destination",'
+          r'"CIRCUIT ROAD",'
+          r'0,'
+          r'"1.326822,103.885997",'
+          r'0,'
+          r'"0m",'
+          r'"North",'
+          r'"West",'
+          r'"driving",'
+          r'"You Have Arrived At Your Destination"'
+          r']'
+          r'],'
+          r'"route_name": ['
+          r'"CENTRAL EXPRESSWAY",'
+          r'"PAN ISLAND EXPRESSWAY"'
+          r'],'
+          r'"route_summary": {'
+          r'"start_point": "SINARAN DRIVE",'
+          r'"end_point": "CIRCUIT ROAD",'
+          r'"total_time": 857,'
+          r'"total_distance": 7977'
+          r'},'
+          r'"alternativeroute": ['
+          r'{'
+          r'"status_message": "Found route between points",'
+          r'"route_geometry": "alternativeroutegeometry",'
+          r'"status": 0,'
+          r'"route_instructions": ['
+          r'['
+          r'"Head",'
+          r'"SINARAN DRIVE",'
+          r'56,'
+          r'"1.320394,103.844478",'
+          r'18,'
+          r'"56m",'
+          r'"North East",'
+          r'"North",'
+          r'"driving",'
+          r'"Head Northeast On Sinaran Drive"'
+          r'],'
+          r'['
+          r'"Destination",'
+          r'"CIRCUIT ROAD",'
+          r'0,'
+          r'"1.326822,103.885997",'
+          r'0,'
+          r'"0m",'
+          r'"North",'
+          r'"West",'
+          r'"driving",'
+          r'"You Have Arrived At Your Destination"'
+          r']'
+          r'],'
+          r'"route_name": ['
+          r'"CENTRAL EXPRESSWAY",'
+          r'"PAN ISLAND EXPRESSWAY"'
+          r'],'
+          r'"route_summary": {'
+          r'"start_point": "SINARAN DRIVE",'
+          r'"end_point": "CIRCUIT ROAD",'
+          r'"total_time": 879,'
+          r'"total_distance": 7964'
+          r'},'
+          r'"viaRoute": "PAN ISLAND EXPRESSWAY",'
+          r'"subtitle": "Alternative suggestion"'
+          r'}'
+          r'],'
+          r'"viaRoute": "PAN ISLAND EXPRESSWAY",'
+          r'"subtitle": "Fastest route, assuming usual traffic",'
+          r'"phyroute": {'
+          r'"status_message": "Found route between points",'
+          r'"route_geometry": "phyroutegeometry",'
+          r'"status": 0,'
+          r'"route_instructions": ['
+          r'['
+          r'"Head",'
+          r'"SINARAN DRIVE",'
+          r'56,'
+          r'"1.320394,103.844478",'
+          r'18,'
+          r'"56m",'
+          r'"North East",'
+          r'"North",'
+          r'"driving",'
+          r'"Head Northeast On Sinaran Drive"'
+          r'],'
+          r'['
+          r'"Destination",'
+          r'"CIRCUIT ROAD",'
+          r'0,'
+          r'"1.326822,103.885997",'
+          r'0,'
+          r'"0m",'
+          r'"North",'
+          r'"West",'
+          r'"driving",'
+          r'"You Have Arrived At Your Destination"'
+          r']'
+          r'],'
+          r'"route_name": ['
+          r'"SERANGOON ROAD",'
+          r'"PAN ISLAND EXPRESSWAY"'
+          r'],'
+          r'"route_summary": {'
+          r'"start_point": "SINARAN DRIVE",'
+          r'"end_point": "CIRCUIT ROAD",'
+          r'"total_time": 977,'
+          r'"total_distance": 7458'
+          r'},'
+          r'"viaRoute": "SERANGOON ROAD",'
+          r'"subtitle": "Shortest distance"'
+          r'}'
+          r'}');
+      Route route = Route.fromJson(response);
+      expect(route.statusMessage, 'Found route between points');
+      expect(route.encodedRouteGeometry, 'routegeometrymain');
+      expect(route.status, 0);
+      expect(route.routeInstructions.length, 2);
+
+      expect(route.routeInstructions[0][0], 'Head');
+      expect(route.routeInstructions[0][1], 'SINARAN DRIVE');
+      expect(route.routeInstructions[0][2], 56);
+      expect(route.routeInstructions[0][3], '1.320394,103.844478');
+      expect(route.routeInstructions[0][4], 18);
+      expect(route.routeInstructions[0][5], '56m');
+      expect(route.routeInstructions[0][6], 'North East');
+      expect(route.routeInstructions[0][7], 'North');
+      expect(route.routeInstructions[0][8], 'driving');
+      expect(route.routeInstructions[0][9], 'Head Northeast On Sinaran Drive');
+
+      expect(route.routeInstructions[1][0], 'Destination');
+      expect(route.routeInstructions[1][1], 'CIRCUIT ROAD');
+      expect(route.routeInstructions[1][2], 0);
+      expect(route.routeInstructions[1][3], '1.326822,103.885997');
+      expect(route.routeInstructions[1][4], 0);
+      expect(route.routeInstructions[1][5], '0m');
+      expect(route.routeInstructions[1][6], 'North');
+      expect(route.routeInstructions[1][7], 'West');
+      expect(route.routeInstructions[1][8], 'driving');
+      expect(route.routeInstructions[1][9],
+          'You Have Arrived At Your Destination');
+
+      expect(route.routeNames.length, 2);
+      expect(route.routeNames[0], 'CENTRAL EXPRESSWAY');
+      expect(route.routeNames[1], 'PAN ISLAND EXPRESSWAY');
+
+      expect(route.routeSummary.startPoint, 'SINARAN DRIVE');
+      expect(route.routeSummary.endPoint, 'CIRCUIT ROAD');
+      expect(route.routeSummary.totalTime, 857);
+      expect(route.routeSummary.totalDistance, 7977);
+
+      expect(route.alternativeRoutes.length, 1);
+      expect(route.alternativeRoutes[0].statusMessage,
+          'Found route between points');
+      expect(route.alternativeRoutes[0].encodedRouteGeometry,
+          'alternativeroutegeometry');
+      expect(route.alternativeRoutes[0].status, 0);
+
+      expect(route.alternativeRoutes[0].routeInstructions.length, 2);
+      expect(route.alternativeRoutes[0].routeInstructions[0][0], 'Head');
+      expect(
+          route.alternativeRoutes[0].routeInstructions[0][1], 'SINARAN DRIVE');
+      expect(route.alternativeRoutes[0].routeInstructions[0][2], 56);
+      expect(route.alternativeRoutes[0].routeInstructions[0][3],
+          '1.320394,103.844478');
+      expect(route.alternativeRoutes[0].routeInstructions[0][4], 18);
+      expect(route.alternativeRoutes[0].routeInstructions[0][5], '56m');
+      expect(route.alternativeRoutes[0].routeInstructions[0][6], 'North East');
+      expect(route.alternativeRoutes[0].routeInstructions[0][7], 'North');
+      expect(route.alternativeRoutes[0].routeInstructions[0][8], 'driving');
+      expect(route.alternativeRoutes[0].routeInstructions[0][9],
+          'Head Northeast On Sinaran Drive');
+
+      expect(route.alternativeRoutes[0].routeInstructions[1][0], 'Destination');
+      expect(
+          route.alternativeRoutes[0].routeInstructions[1][1], 'CIRCUIT ROAD');
+      expect(route.alternativeRoutes[0].routeInstructions[1][2], 0);
+      expect(route.alternativeRoutes[0].routeInstructions[1][3],
+          '1.326822,103.885997');
+      expect(route.alternativeRoutes[0].routeInstructions[1][4], 0);
+      expect(route.alternativeRoutes[0].routeInstructions[1][5], '0m');
+      expect(route.alternativeRoutes[0].routeInstructions[1][6], 'North');
+      expect(route.alternativeRoutes[0].routeInstructions[1][7], 'West');
+      expect(route.alternativeRoutes[0].routeInstructions[1][8], 'driving');
+      expect(route.alternativeRoutes[0].routeInstructions[1][9],
+          'You Have Arrived At Your Destination');
+
+      expect(route.alternativeRoutes[0].routeNames.length, 2);
+      expect(route.alternativeRoutes[0].routeNames[0], 'CENTRAL EXPRESSWAY');
+      expect(route.alternativeRoutes[0].routeNames[1], 'PAN ISLAND EXPRESSWAY');
+
+      expect(
+          route.alternativeRoutes[0].routeSummary.startPoint, 'SINARAN DRIVE');
+      expect(route.alternativeRoutes[0].routeSummary.endPoint, 'CIRCUIT ROAD');
+      expect(route.alternativeRoutes[0].routeSummary.totalTime, 879);
+      expect(route.alternativeRoutes[0].routeSummary.totalDistance, 7964);
+      expect(route.alternativeRoutes[0].viaRoute, 'PAN ISLAND EXPRESSWAY');
+      expect(route.alternativeRoutes[0].subtitle, 'Alternative suggestion');
+
+      expect(route.viaRoute, 'PAN ISLAND EXPRESSWAY');
+      expect(route.subtitle, 'Fastest route, assuming usual traffic');
+
+      expect(route.phyRoute.statusMessage, 'Found route between points');
+      expect(route.phyRoute.encodedRouteGeometry, 'phyroutegeometry');
+      expect(route.phyRoute.status, 0);
+
+      expect(route.phyRoute.routeInstructions.length, 2);
+      expect(route.phyRoute.routeInstructions[0][0], 'Head');
+      expect(route.phyRoute.routeInstructions[0][1], 'SINARAN DRIVE');
+      expect(route.phyRoute.routeInstructions[0][2], 56);
+      expect(route.phyRoute.routeInstructions[0][3], '1.320394,103.844478');
+      expect(route.phyRoute.routeInstructions[0][4], 18);
+      expect(route.phyRoute.routeInstructions[0][5], '56m');
+      expect(route.phyRoute.routeInstructions[0][6], 'North East');
+      expect(route.phyRoute.routeInstructions[0][7], 'North');
+      expect(route.phyRoute.routeInstructions[0][8], 'driving');
+      expect(route.phyRoute.routeInstructions[0][9],
+          'Head Northeast On Sinaran Drive');
+
+      expect(route.phyRoute.routeInstructions[1][0], 'Destination');
+      expect(route.phyRoute.routeInstructions[1][1], 'CIRCUIT ROAD');
+      expect(route.phyRoute.routeInstructions[1][2], 0);
+      expect(route.phyRoute.routeInstructions[1][3], '1.326822,103.885997');
+      expect(route.phyRoute.routeInstructions[1][4], 0);
+      expect(route.phyRoute.routeInstructions[1][5], '0m');
+      expect(route.phyRoute.routeInstructions[1][6], 'North');
+      expect(route.phyRoute.routeInstructions[1][7], 'West');
+      expect(route.phyRoute.routeInstructions[1][8], 'driving');
+      expect(route.phyRoute.routeInstructions[1][9],
+          'You Have Arrived At Your Destination');
+
+      expect(route.phyRoute.routeNames.length, 2);
+      expect(route.phyRoute.routeNames[0], 'SERANGOON ROAD');
+      expect(route.phyRoute.routeNames[1], 'PAN ISLAND EXPRESSWAY');
+
+      expect(route.phyRoute.routeSummary.startPoint, 'SINARAN DRIVE');
+      expect(route.phyRoute.routeSummary.endPoint, 'CIRCUIT ROAD');
+      expect(route.phyRoute.routeSummary.totalTime, 977);
+      expect(route.phyRoute.routeSummary.totalDistance, 7458);
+
+      expect(route.phyRoute.viaRoute, 'SERANGOON ROAD');
+      expect(route.phyRoute.subtitle, 'Shortest distance');
+    });
+
     test('plan vertex deserialize correctly', () {
       Map<String, dynamic> response = json.decode('{'
           r'"name": "Origin",'

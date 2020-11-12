@@ -5,19 +5,24 @@ import 'leg.dart';
 
 part 'step.g.dart';
 
-@JsonSerializable(createToJson: false)
-
 /// A [Leg] might involved multiple [Step]s to complete. This class contains
 /// information for individual [Step]s in a route.
+@JsonSerializable(createToJson: false)
 class Step {
+  /// Distance of this step.
   double distance;
+
   String relativeDirection;
   String streetName;
   String absoluteDirection;
   bool stayOn;
   bool area;
   bool bogusName;
+
+  /// Longitude of this step.
   double lon;
+
+  /// Latitude of this step.
   double lat;
   List<dynamic> elevation;
 

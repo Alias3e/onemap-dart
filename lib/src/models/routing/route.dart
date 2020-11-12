@@ -6,31 +6,42 @@ import 'route_summary.dart';
 
 part 'route.g.dart';
 
-@JsonSerializable(createToJson: false)
-
 /// Routing data retrieved from calling route API with walk, cycle or drive as the
 /// route type.
+@JsonSerializable(createToJson: false)
 class Route with GeometryDecoder {
+  /// Message about the status of the route request.
   @JsonKey(name: 'status_message')
   String statusMessage;
 
+  /// Encoded string which can be decoded into a list of latitude and longitude
+  /// coordinate points.
   @JsonKey(name: 'route_geometry')
   String encodedRouteGeometry;
 
   int status;
 
+  /// List of instructions for the route.
   @JsonKey(name: 'route_instructions')
   List<List<dynamic>> routeInstructions;
 
+  /// List of names for the route.
   @JsonKey(name: 'route_name')
   List<String> routeNames;
 
+  /// Summary for the route.
   @JsonKey(name: 'route_summary')
   RouteSummary routeSummary;
 
   String viaRoute;
 
   String subtitle;
+
+  @JsonKey(name: 'alternativeroute')
+  List<Route> alternativeRoutes;
+
+  @JsonKey(name: 'phyroute')
+  Route phyRoute;
 
   /// Get decoded route geometry. For more information, refer to [GeometryDecoder]
   /// class.

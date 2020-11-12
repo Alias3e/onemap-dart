@@ -6,11 +6,13 @@ import '../models/authentication/onemap_credentials.dart';
 /// Provides authentication with OneMap service.
 class Authentication {
   /// @nodoc
+  /// HTTP client.
   final Dio _dio;
 
   /// OneMap access token.
   String accessToken;
 
+  /// Previously cached [accessToken] can be used to construct this object.
   Authentication(this._dio, {this.accessToken});
 
   /// Authenticate user to get access token in order to request private APIs.

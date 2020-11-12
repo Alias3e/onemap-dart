@@ -2,18 +2,21 @@ import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../apis/population_query.dart';
 import '../type_adapter.dart';
 
 part 'planning_area.g.dart';
 
-@JsonSerializable(explicitToJson: true, createToJson: false)
-
 /// Describes planning area with [planningAreaName] and geolocation data in [String] format([geoJsonString])
 /// or [Map] format([geoJson]).
+@JsonSerializable(explicitToJson: true, createToJson: false)
 class PlanningArea {
+  /// Name of planning area. Use in [PopulationQuery] APIs to define the
+  /// planning area for which to retrieve data for.
   @JsonKey(name: 'pln_area_n')
   String planningAreaName;
 
+  /// GeoJson string that defines the geometry of the planning area.
   @JsonKey(name: 'geojson', fromJson: JsonTypeAdapter.emptyFromNull)
   String geoJsonString;
 

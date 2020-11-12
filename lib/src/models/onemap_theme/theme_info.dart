@@ -4,10 +4,10 @@ import 'theme_name.dart';
 
 part 'theme_info.g.dart';
 
-@JsonSerializable(createToJson: false)
-
 /// Contains a [themeNames] list.
+@JsonSerializable(createToJson: false)
 class ThemeInfo {
+  /// List of [ThemeName].
   @JsonKey(name: 'Theme_Names')
   List<ThemeName> themeNames;
 

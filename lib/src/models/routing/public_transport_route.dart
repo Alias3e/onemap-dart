@@ -4,12 +4,13 @@ import 'routing.dart';
 
 part 'public_transport_route.g.dart';
 
-@JsonSerializable(explicitToJson: true, createToJson: false)
-
 /// Routing data retrieved from calling route API with public transport as the
 /// route type.
+@JsonSerializable(explicitToJson: true, createToJson: false)
 class PublicTransportRoute {
+  /// Contains information about the route request.
   RequestParameters requestParameters;
+  // Contains the transit plan for the route.
   Plan plan;
   DebugOutput debugOutput;
   ElevationMetadata elevationMetadata;

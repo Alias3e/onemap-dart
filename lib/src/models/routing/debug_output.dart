@@ -2,9 +2,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'debug_output.g.dart';
 
-@JsonSerializable(createToJson: false)
-
 /// Debug output returned when calling route API with route type set to public transport.
+@JsonSerializable(createToJson: false)
 class DebugOutput {
   int precalculationTime;
 

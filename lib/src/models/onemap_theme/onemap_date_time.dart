@@ -2,9 +2,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'onemap_date_time.g.dart';
 
-@JsonSerializable(createToJson: false)
-
 /// Describes theme date, time and timezone.
+@JsonSerializable(createToJson: false)
 class OneMapDateTime {
   @JsonKey(name: 'date')
   String dateString;

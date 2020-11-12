@@ -7,8 +7,10 @@ import '../../src/models/coordinate/coordinate.dart';
 /// spatial references.
 class CoordinateConverter {
   /// @nodoc
+  /// HTTP client
   final Dio _dio;
 
+  /// Construct object with [Dio] http client.
   CoordinateConverter(this._dio);
 
   /// Converts [latitude] and [longitude] from EPSG:4326 spatial reference

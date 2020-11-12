@@ -7,6 +7,8 @@ import 'api.dart';
 import 'authentication.dart';
 
 class PopulationQuery extends Api {
+  /// Construct object with [Dio] http client and [Authentication] object which
+  /// contains OneMap access token.
   PopulationQuery(Dio dio, Authentication authentication)
       : super(dio, authentication);
 

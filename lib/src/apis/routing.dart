@@ -10,6 +10,8 @@ import 'authentication.dart';
 
 /// API to find different routes between 2 points using various mode of transport.
 class Routing extends Api {
+  /// Construct object with [Dio] http client and [Authentication] object which
+  /// contains OneMap access token.
   Routing(Dio dio, Authentication authentication) : super(dio, authentication);
 
   ///

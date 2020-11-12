@@ -4,16 +4,19 @@ import 'gender_data.dart';
 
 part 'ethnic_distribution.g.dart';
 
-@JsonSerializable(createToJson: false)
-
 /// Describe the ethnic distribution retrieved from population query.
+@JsonSerializable(createToJson: false)
 class EthnicDistribution extends GenderData {
+  /// Number of people who are of chinese ethnicity.
   int chinese;
 
+  /// Number of people who are of malay ethnicity.
   int malays;
 
+  /// Number of people who are of indian ethnicity.
   int indian;
 
+  /// Number of people who are of ethnicity other than chinese, malay or indian.
   int others;
 
   EthnicDistribution(this.chinese, this.malays, this.indian, this.others,
