@@ -1,6 +1,6 @@
 name: onemapsg
 description: OneMap is the authoritative national map of Singapore with the most detailed and timely updated information developed by the Singapore Land Authority.
-version: 0.9.0
+version: 1.0.0
 homepage: https://github.com/Alias3e/onemap-dart
 
 environment:
